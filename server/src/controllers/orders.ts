@@ -38,4 +38,16 @@ export const getLimitOrders = async (req: Request, res: Response) => {
   }
 };
 
+export const getFilledOrders = async (req: Request, res: Response) => {
+  try {
+    const product_id: string = req.body.product_id;
+    const orders = await coinbaseApi.rest.fill.getFillsByProductId(product_id);
+    console.log(orders);
+    res.status(200).send(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Something went wrong. Please try again later.");
+  }
+}
+
 
