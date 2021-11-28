@@ -1,3 +1,4 @@
+import axios from "axios";
 import { OrderSide, OrderType, LimitOrder } from "coinbase-pro-node";
 import { Request, Response } from "express";
 import { coinbaseApi } from "../util/coinbaseUtils";
@@ -26,4 +27,15 @@ export const createLimitOrder = async (req: Request, res: Response) => {
     res.status(500).send("Something went wrong. Please try again later.");
   }
 };
+
+export const getLimitOrders = async (req: Request, res: Response) => {
+  try {
+    const orders = await coinbaseApi.rest.order.getOrders();
+    res.status(200).send(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Something went wrong. Please try again later.");
+  }
+};
+
 
