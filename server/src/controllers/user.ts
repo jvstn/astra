@@ -9,19 +9,13 @@ export const getCoinbaseAccounts = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { id: accountID } = await coinbaseApi.rest.user.verifyAuthentication();
-    const coinbase_accounts = await getActiveAccounts("cb");
-    const pro_wallets = await getActiveAccounts("pro");
-    const { name } = req.body;
+    const { username } = req.body;
     const user = await User.create({
-      name,
-      accountID,
-      coinbase_accounts,
-      pro_wallets
+      username,
     });
     res.send(user);
   } catch (error) {
     console.log(error);
-    res.send(error);
+    res.status(500).send("Something went wrong. Please try again later.");
   }
 };

@@ -1,29 +1,24 @@
 import mongoose, { Schema } from 'mongoose'
 
-interface IUser {
-  name: string;
-  email: string;
-  account: string;
-  wallets: string[];
+interface IUser extends mongoose.Document {
+  username: string;
+  watchlist: Schema[];
 }
 
-const CbAccountSchema = new Schema({
-  id: String,
-  currency: String,
-  balance: Number
-});
+const WatchlistItemSchema = new Schema({
+  product_id: {
+    type: String,
+    required: true
+  }
+})
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
   },
-  accountID: {
-    type: String,
-    required: true,
-  },
-  pro_wallets: [CbAccountSchema],
-  coinbase_accounts: [CbAccountSchema]
+  
+  watchlist: [WatchlistItemSchema]
 })
 
 const User = mongoose.model<IUser>('User', UserSchema);
