@@ -1,8 +1,12 @@
 import mongoose, { Schema } from 'mongoose'
 
-interface IUser extends mongoose.Document {
+export interface IWatchlistItem {
+  product_id: string;
+}
+
+export interface IUser {
   username: string;
-  watchlist: Schema[];
+  watchlist: IWatchlistItem[];
 }
 
 const WatchlistItemSchema = new Schema({

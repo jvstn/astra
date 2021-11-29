@@ -1,7 +1,7 @@
 import express, { Response } from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
-import profile from './routes/profile'
+import profile from './routes/userRoutes'
 import limitRoutes from './routes/orderRoutes'
 import strategyRoutes from './routes/strategyRoutes'
 import { coinbaseApi } from './util/coinbaseUtils';
