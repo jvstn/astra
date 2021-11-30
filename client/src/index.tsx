@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { store } from './app/store';
+import { store } from './store/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Home />
+      <Dashboard />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
