@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import React, { ReactElement, MouseEventHandler } from "react";
+import React, { ReactElement } from "react";
 import CryptoCard from "../../components/CryptoCard";
 import { useAppDispatch } from "../../store/hooks";
 import { setSelectedAsset } from "./assetSelectorSlice";

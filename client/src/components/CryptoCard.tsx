@@ -1,7 +1,7 @@
 import { CardActionArea } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import React, { ReactElement, MouseEventHandler } from 'react';
+import React, { ReactElement } from 'react';
 interface Props {
   productName: string;
   onClick: () => void;

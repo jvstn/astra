@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-interface initialState {
+interface InitialState {
   selectedAsset: string;
 }
 
-const initialState: initialState = {
+const initialState: InitialState = {
   selectedAsset: 'BTC',
 };
 
