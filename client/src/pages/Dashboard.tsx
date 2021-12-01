@@ -1,21 +1,19 @@
-import { Box } from '@mui/system'
-import React, { ReactElement } from 'react'
-import CryptoCard from '../components/CryptoCard'
-import Sidebar from '../components/Sidebar'
-import CoinSelector from '../features/AssetSelector/AssetSelector'
+import { Box } from "@mui/system";
+import React, { ReactElement } from "react";
+import CryptoCard from "../components/CryptoCard";
+import Sidebar from "../components/Sidebar";
+import AssetSelector from "../features/AssetSelector/AssetSelector";
 
-interface Props {
-  
-}
+interface Props {}
 
 export default function Dashboard({}: Props): ReactElement {
   return (
     <>
       <Box display="flex" justifyContent="center">
         <Sidebar>
-          <CoinSelector />
+          <AssetSelector />
         </Sidebar>
       </Box>
     </>
-  )
+  );
 }

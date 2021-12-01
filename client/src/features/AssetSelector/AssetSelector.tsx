@@ -6,7 +6,7 @@ import { setSelectedAsset } from "./assetSelectorSlice";
 
 interface Props {}
 
-export default function CoinSelector({}: Props): ReactElement {
+export default function AssetSelector({}: Props): ReactElement {
   const dispatch = useAppDispatch();
 
   const assets = {
