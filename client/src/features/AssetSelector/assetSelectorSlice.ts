@@ -14,7 +14,6 @@ const assetSelectorSlice = createSlice({
   initialState,
   reducers: {
     setSelectedAsset: (state, action) => {
-      console.log("Hello again")
       state.selectedAsset = action.payload;
     },
   }
