@@ -1,17 +1,17 @@
 import { Box } from "@mui/system";
 import React, { ReactElement } from "react";
-import CryptoCard from "../components/CryptoCard";
 import Sidebar from "../components/Sidebar";
 import AssetSelector from "../features/AssetSelector/AssetSelector";
+import StrategySelector from "../features/StrategySelector/StrategySelector";
 
-interface Props {}
 
-export default function Dashboard({}: Props): ReactElement {
+export default function Dashboard(): ReactElement {
   return (
     <>
       <Box display="flex" justifyContent="center">
         <Sidebar>
           <AssetSelector />
+          <StrategySelector />
         </Sidebar>
       </Box>
     </>
