@@ -1,8 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import assetSelector from '../features/AssetSelector/assetSelectorSlice';
 
 export const store = configureStore({
   reducer: {
-   
+    assetSelector,
   },
 });
 
