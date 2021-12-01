@@ -1,4 +1,4 @@
-import * as React from "react";
+import { Menu } from "@mui/icons-material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,9 +9,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Menu } from "@mui/icons-material";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import * as React from "react";
 
 const drawerWidth = 240;
 
@@ -109,7 +108,9 @@ export default function Sidebar({children}: Props) {
       </Box>
       <Box
         component="main"
+        justifyItems="center"
         sx={{
+          display: "flex",
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
