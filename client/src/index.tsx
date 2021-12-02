@@ -4,6 +4,7 @@ import { store } from './store/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import Dashboard from './pages/Dashboard';
+import { io } from 'socket.io-client';
 
 ReactDOM.render(
   <React.StrictMode>
