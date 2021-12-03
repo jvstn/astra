@@ -4,6 +4,7 @@ import React, { ReactElement, useEffect, useContext } from "react";
 import Sidebar from "../components/Sidebar";
 import { SocketContext } from "../context/socket";
 import AssetSelector from "../features/AssetSelector/AssetSelector";
+import OrdersList from "../features/OrdersList/OrdersList";
 import StrategySelector from "../features/StrategySelector/StrategySelector";
 
 
@@ -34,6 +35,10 @@ export default function Dashboard(): ReactElement {
               <AssetSelector />
               <StrategySelector />
             </Stack>
+              <Stack direction="row">
+                <OrdersList orderType="fill" />
+                <OrdersList orderType="open" />
+              </Stack>
           </Grid>
         </Sidebar>
       </Box>

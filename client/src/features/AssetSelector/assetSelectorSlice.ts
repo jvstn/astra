@@ -6,7 +6,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  selectedAsset: 'BTC',
+  selectedAsset: 'BTC-USD',
 };
 
 const assetSelectorSlice = createSlice({

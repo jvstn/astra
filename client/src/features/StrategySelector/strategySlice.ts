@@ -58,7 +58,7 @@ const strategySlice = createSlice({
     });
     builder.addCase(startStrategy.rejected, (state, action) => {
       state.loading = "failed";
-      state.error = action.payload as string;
+      state.error = action.error.message as string;
     });
   },
 });

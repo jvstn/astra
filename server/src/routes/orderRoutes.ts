@@ -4,8 +4,8 @@ import { createLimitOrder, getFilledOrders, getLimitOrders } from '../controller
 const router = Router();
 
 router.post('/', createLimitOrder);
-router.get('/', getLimitOrders);
+router.get('/open/:product_id', getLimitOrders);
 
-router.get('/fills', getFilledOrders);
+router.get('/fill/:product_id', getFilledOrders);
 
 export default router;
