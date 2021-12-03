@@ -18,12 +18,12 @@ type StrategyInputOption = {
 };
 
 export const limitOrderContent = {
-  id: "limit-order",
-  name: "Limit Order",
-  description: "Limit Order",
+  id: "target-price",
+  name: "Target Price",
+  description: "Buy at certain price",
   inputs: [
     { name: "price", type: "number", label: "Price" },
-    { name: "amount", type: "number", label: "Amount" },
+    { name: "size", type: "number", label: "Amount" },
     {
       name: "side",
       type: "select",
@@ -38,14 +38,14 @@ export const limitOrderContent = {
 
 export const rsiContent = {
   id: "rsi",
-  name: "RSI",
-  description: "Relative Strength Index",
+  name: "Relative Strength",
+  description: "Buy when oversold, sell when overbought",
   inputs: [{ name: "interval", type: "number", label: "Interval" }],
 };
 
 export const bollingerBandsContent: StrategyContent = {
   id: "boll-bands",
   name: "Bollinger Bands",
-  description: "Bollinger Bands",
+  description: "Buy with in range of moving average",
   inputs: [{ name: "interval", type: "number", label: "Interval" }],
 };

@@ -42,7 +42,7 @@ export default function StrategyModal({ content }: Props): ReactElement {
   const { name, inputs, id } = content;
   const [open, setOpen] = useState(false);
   const [interval, setInterval] = useState(10);
-  const [amount, setAmount] = useState<Number>();
+  const [size, setSize] = useState<Number>();
   const [price, setPrice] = useState<Number>();
   const [side, setSide] = useState<OrderSide>();
   const handleOpen = () => {
@@ -60,8 +60,8 @@ export default function StrategyModal({ content }: Props): ReactElement {
   const handleIntervalChange = (value: string) => {
     setInterval(Number(value));
   };
-  const handleAmountChange = (value: string) => {
-    setAmount(Number(value));
+  const handleSizeChange = (value: string) => {
+    setSize(Number(value));
   };
   const handlePriceChange = (value: string) => {
     setPrice(Number(value));
@@ -72,13 +72,13 @@ export default function StrategyModal({ content }: Props): ReactElement {
 
   const inputValues: IIndexable = {
     interval: interval,
-    amount: amount,
+    amount: size,
     price: price,
   };
 
   const inputSetters: IIndexable = {
     interval: handleIntervalChange,
-    amount: handleAmountChange,
+    size: handleSizeChange,
     price: handlePriceChange,
     side: handleSideChange,
   };
@@ -86,7 +86,7 @@ export default function StrategyModal({ content }: Props): ReactElement {
   const requestBody: StrategyRequestBody = {
     product_id: selectedAsset,
     ...(interval && { interval }),
-    ...(amount && { amount }),
+    ...(size && { size }),
     ...(price && { price }),
     ...(side && { side }),
   };

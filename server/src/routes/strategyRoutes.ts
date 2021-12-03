@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { startBollBands, startRSI, stopBollBands, stopRSI } from "../controllers/strategies";
+import { createLimitOrder, startBollBands, startRSI, stopBollBands, stopRSI } from "../controllers/strategies";
 
 const router = Router();
 
@@ -8,5 +8,7 @@ router.get("/boll-bands", stopBollBands);
 
 router.post("/rsi", startRSI);
 router.get("/rsi", stopRSI);
+
+router.post("/target-price", createLimitOrder);
 
 export default router;

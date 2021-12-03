@@ -47,11 +47,13 @@ coinbaseApi.ws.subscribe({
 });
 
 coinbaseApi.ws.on(WebSocketEvent.ON_MESSAGE, (msg) => {
-  if (msg.type === 'done') {
-    io.emit('FILL', msg);
+  if (msg.type === 'match') {
+    io.emit('fill', msg);
+    console.log('Emiitted fill');
   }
   if (msg.type === 'open') {
-    io.emit('OPEN', msg);
+    io.emit('open', msg);
+    console.log("Emiitted fill");
   }
 });
 
