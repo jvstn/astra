@@ -4,14 +4,16 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent
+  SelectChangeEvent,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import React, { ReactElement, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { StrategyContent } from "./StrategyContent";
+import { OrderSide, setSelectedStrategy, startStrategy, StrategyRequestBody } from "./strategySlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -34,17 +36,27 @@ interface IIndexable {
   [key: string]: any;
 }
 
-type OrderSide = "BUY" | "SELL";
-
 export default function StrategyModal({ content }: Props): ReactElement {
-  const { name, inputs } = content;
+  const dispatch = useAppDispatch();
+  const { selectedAsset } = useAppSelector((state) => state.asset);
+  const { name, inputs, id } = content;
   const [open, setOpen] = useState(false);
   const [interval, setInterval] = useState(10);
   const [amount, setAmount] = useState<Number>();
   const [price, setPrice] = useState<Number>();
   const [side, setSide] = useState<OrderSide>();
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    dispatch(setSelectedStrategy(id));
+  };
   const handleClose = () => setOpen(false);
+
+  const handleSubmit = (body: StrategyRequestBody) => {
+    console.log(body);
+    dispatch(startStrategy(body));
+    handleClose();
+  };
+
   const handleIntervalChange = (value: string) => {
     setInterval(Number(value));
   };
@@ -71,7 +83,8 @@ export default function StrategyModal({ content }: Props): ReactElement {
     side: handleSideChange,
   };
 
-  const requestBody = {
+  const requestBody: StrategyRequestBody = {
+    product_id: selectedAsset,
     ...(interval && { interval }),
     ...(amount && { amount }),
     ...(price && { price }),
@@ -122,15 +135,7 @@ export default function StrategyModal({ content }: Props): ReactElement {
               </FormControl>
             )
           )}
-          <Button
-            onClick={() => {
-              console.log(requestBody);
-
-              handleClose();
-            }}
-          >
-            Submit
-          </Button>
+          <Button onClick={() => handleSubmit(requestBody)}>Submit</Button>
         </Box>
       </Modal>
     </div>

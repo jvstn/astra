@@ -7,10 +7,13 @@ import strategyRoutes from './routes/strategyRoutes'
 import { coinbaseApi } from './util/coinbaseUtils';
 import {Server} from 'socket.io';
 import http from 'http';
+import cors from 'cors';
 import { WebSocketChannelName, WebSocketEvent } from 'coinbase-pro-node';
 const app = express();
 const server = http.createServer(app);
-
+app.use(cors({
+  origin: 'http://localhost:3000',
+}));
 const io = new Server(server, {
   cors: {
     origin: 'http://localhost:3000',
@@ -36,7 +39,7 @@ coinbaseApi.ws.connect();
 
 app.use('/user', profile);
 app.use('/orders', limitRoutes);
-app.use('/strategies', strategyRoutes);
+app.use('/strategy', strategyRoutes);
 
 coinbaseApi.ws.subscribe({
   name: WebSocketChannelName.USER,

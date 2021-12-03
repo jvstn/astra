@@ -1,20 +1,65 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AsyncInitialState } from "../../store/hooks";
+import axios from "axios";
+import { RootState } from "../../store/store";
 
-interface InitialState {
+export type OrderSide = "BUY" | "SELL";
+
+export interface StrategyRequestBody {
+  product_id: string;
+  side?: OrderSide | undefined;
+  price?: Number | undefined;
+  amount?: Number | undefined;
+  interval?: number | undefined;
+}
+
+interface StrategyState extends AsyncInitialState {
   selectedStrategy: string;
 }
 
-const initialState: InitialState = {
+const initialState: StrategyState = {
   selectedStrategy: "",
+  loading: "idle",
+  error: null,
 };
 
+export const startStrategy = createAsyncThunk<
+  any,
+  StrategyRequestBody,
+  { state: RootState }
+>("strategy/startStrategy", async (requestBody, thunkApi) => {
+  const { strategy } = thunkApi.getState();
+  const { selectedStrategy } = strategy;
+  try {
+    const response = await axios.post(
+      `/strategy/${selectedStrategy}`,
+      requestBody
+    );
+    return response.data;
+  } catch (error) {
+    thunkApi.rejectWithValue(error);
+  }
+});
+
 const strategySlice = createSlice({
-  name: "strategySelector",
+  name: "strategy",
   initialState,
   reducers: {
     setSelectedStrategy: (state, action) => {
       state.selectedStrategy = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(startStrategy.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(startStrategy.fulfilled, (state) => {
+      state.loading = "succeeded";
+    });
+    builder.addCase(startStrategy.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.payload as string;
+    });
   },
 });
 

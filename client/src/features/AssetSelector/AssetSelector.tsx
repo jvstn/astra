@@ -10,18 +10,18 @@ export default function AssetSelector({}: Props): ReactElement {
   const dispatch = useAppDispatch();
 
   const assets = {
-    BTC: "bitcoin",
-    LINK: "chainlink",
-    BAT: "basic-attention-token",
+    "BTC-USD": "bitcoin",
+    "LINK": "chainlink",
+    "BAT": "basic-attention-token",
   };
 
   return (
     <>
       <Stack direction="row" spacing={20}>
-        {Object.values(assets).map((asset) => (
+        {Object.entries(assets).map(([product_id, productName]) => (
           <CryptoCard
-            onClick={() => dispatch(setSelectedAsset(asset))}
-            productName={asset}
+            onClick={() => dispatch(setSelectedAsset(product_id))}
+            productName={productName}
           />
         ))}
       </Stack>

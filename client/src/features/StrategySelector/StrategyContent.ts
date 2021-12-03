@@ -1,23 +1,24 @@
 export type StrategyContent = {
+  id: string;
   name: string;
   description: string;
   inputs: StrategyInput[];
-}
+};
 
 type StrategyInput = {
   name: string;
   type: string;
   label: string;
   options?: StrategyInputOption[];
-}
+};
 
 type StrategyInputOption = {
   label: string;
   value: string;
-}
-
+};
 
 export const limitOrderContent = {
+  id: "limit-order",
   name: "Limit Order",
   description: "Limit Order",
   inputs: [
@@ -36,15 +37,15 @@ export const limitOrderContent = {
 };
 
 export const rsiContent = {
+  id: "rsi",
   name: "RSI",
   description: "Relative Strength Index",
   inputs: [{ name: "interval", type: "number", label: "Interval" }],
 };
 
 export const bollingerBandsContent: StrategyContent = {
+  id: "boll-bands",
   name: "Bollinger Bands",
   description: "Bollinger Bands",
-  inputs: [
-    { name: "interval", type: "number", label: "Interval" },
-  ],
+  inputs: [{ name: "interval", type: "number", label: "Interval" }],
 };

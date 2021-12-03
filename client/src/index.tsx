@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { store } from './store/store';
 import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
-import Dashboard from './pages/Dashboard';
-import { io } from 'socket.io-client';
 import { socket, SocketProvider } from './context/socket';
+import Dashboard from './pages/Dashboard';
+import * as serviceWorker from './serviceWorker';
+import { store } from './store/store';
+axios.defaults.baseURL = 'http://localhost:5000';
+
 
 ReactDOM.render(
   <React.StrictMode>
