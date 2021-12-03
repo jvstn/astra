@@ -1,6 +1,6 @@
 import { Grid, Stack } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { ReactElement, useEffect, useContext } from "react";
+import React, { ReactElement, useContext, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import { SocketContext } from "../context/socket";
 import AssetSelector from "../features/AssetSelector/AssetSelector";

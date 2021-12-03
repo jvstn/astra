@@ -2,7 +2,7 @@ import { List, ListItem } from "@mui/material";
 import React, { ReactElement, useEffect } from "react";
 import { socket } from "../../context/socket";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { fetchOrders, Order, OrderType } from "./ordersSlice";
+import { addNewOrder, fetchOrders, Order, OrderType } from "./ordersSlice";
 
 interface Props {
   orderType: OrderType;
@@ -15,7 +15,8 @@ export default function OrdersList({ orderType }: Props): ReactElement {
   useEffect(() => {
     dispatch(fetchOrders(orderType));
     socket.on(orderType, (order) => {
-      console.log(`${orderType}: `, order);
+      dispatch(addNewOrder(order));
+      console.log(order);
 });
     return () => {
       socket.off(orderType);
