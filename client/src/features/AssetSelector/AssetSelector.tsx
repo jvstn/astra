@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import React, { ReactElement } from "react";
 import CryptoCard from "../../components/CryptoCard";
 import { useAppDispatch } from "../../store/hooks";
@@ -11,13 +11,16 @@ export default function AssetSelector({}: Props): ReactElement {
 
   const assets = {
     "BTC-USD": "bitcoin",
-    "LINK": "chainlink",
-    "BAT": "basic-attention-token",
+    LINK: "chainlink",
+    BAT: "basic-attention-token",
   };
 
   return (
     <>
-      <Stack direction="row" spacing={20}>
+      <Typography textAlign="center" variant="h4" gutterBottom>
+        Select an asset
+      </Typography>
+      <Stack display="flex" justifyContent="center" direction="row"  spacing={20}>
         {Object.entries(assets).map(([product_id, productName]) => (
           <CryptoCard
             onClick={() => dispatch(setSelectedAsset(product_id))}

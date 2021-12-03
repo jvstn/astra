@@ -1,3 +1,4 @@
+import { Grid, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { ReactElement, useEffect, useContext } from "react";
 import Sidebar from "../components/Sidebar";
@@ -28,8 +29,12 @@ export default function Dashboard(): ReactElement {
     <>
       <Box display="flex" justifyContent="center">
         <Sidebar>
-          <AssetSelector />
-          <StrategySelector />
+          <Grid>
+            <Stack spacing={5}>
+              <AssetSelector />
+              <StrategySelector />
+            </Stack>
+          </Grid>
         </Sidebar>
       </Box>
     </>

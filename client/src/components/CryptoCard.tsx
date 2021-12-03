@@ -9,7 +9,7 @@ interface Props {
 
 export default function CryptoCard({productName, onClick}: Props): ReactElement {
   return (
-    <Card sx={{ maxWidth: 150 }} onClick={onClick}>
+    <Card sx={{ maxWidth: 70 }} onClick={onClick}>
       <CardActionArea>
         <CardMedia
           component="img"
