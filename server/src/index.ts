@@ -7,7 +7,7 @@ import strategyRoutes from './routes/strategyRoutes'
 import { coinbaseApi } from './util/coinbaseUtils';
 import {Server} from 'socket.io';
 import http from 'http';
-import { WebSocketChannelName } from 'coinbase-pro-node';
+import { WebSocketChannelName, WebSocketEvent } from 'coinbase-pro-node';
 const app = express();
 const server = http.createServer(app);
 
@@ -32,26 +32,30 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 });
 
-
 coinbaseApi.ws.connect();
-
-coinbaseApi.ws.subscribe({
-  name: WebSocketChannelName.USER,
-  product_ids: ['BTC-USD']
-});
-
-
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 
 app.use('/user', profile);
 app.use('/orders', limitRoutes);
 app.use('/strategies', strategyRoutes);
 
+coinbaseApi.ws.subscribe({
+  name: WebSocketChannelName.USER,
+  product_ids: ["BTC-USD"],
+});
+
+coinbaseApi.ws.on(WebSocketEvent.ON_MESSAGE, (msg) => {
+  if (msg.type === 'done') {
+    io.emit('FILL', msg);
+  }
+  if (msg.type === 'open') {
+    io.emit('OPEN', msg);
+  }
+});
+
+
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
 
 

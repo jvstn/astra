@@ -1,21 +1,28 @@
 import { Box } from "@mui/system";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement, useEffect, useContext } from "react";
 import Sidebar from "../components/Sidebar";
+import { SocketContext } from "../context/socket";
 import AssetSelector from "../features/AssetSelector/AssetSelector";
 import StrategySelector from "../features/StrategySelector/StrategySelector";
-import { io } from "socket.io-client";
 
 
 export default function Dashboard(): ReactElement {
-  const socket = io("http://localhost:5000");
-  socket.on("connect", () => {
-    console.log("connected to the ether");
-  });
-  socket.on("message", (msg) => {
-    console.log("message", msg);
-  });
+  const socket = useContext(SocketContext);
 
-  
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('connected');
+    });
+    socket.on('FILL', (data) => {
+      console.log("FILL" ,data);
+    })
+    socket.on('OPEN', (data) => {
+      console.log('OPEN', data);
+    });
+
+    socket.off('FILL');
+    socket.off('OPEN');
+  }, [socket]);
   
   return (
     <>
