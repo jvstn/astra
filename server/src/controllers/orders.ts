@@ -7,7 +7,7 @@ import { coinbaseApi } from "../util/coinbaseUtils";
 
 export const getLimitOrders = async (req: Request, res: Response) => {
   try {
-    const orders = await coinbaseApi.rest.order.getOrders();
+    const orders = await coinbaseApi.rest.order.getOrders({limit: 3});
     res.status(200).send(orders);
   } catch (error) {
     console.log(error);
@@ -19,7 +19,7 @@ export const getFilledOrders = async (req: Request, res: Response) => {
   try {
     const product_id: string = req.params.product_id;
     console.log(req.params);
-    const orders = await coinbaseApi.rest.fill.getFillsByProductId(product_id, {limit: 10});
+    const orders = await coinbaseApi.rest.fill.getFillsByProductId(product_id, {limit: 3});
     console.log(orders);
     res.status(200).send(orders);
   } catch (error) {

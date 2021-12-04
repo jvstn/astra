@@ -7,11 +7,12 @@ export type OrderType = "open" | "fill";
 
 export interface Order {
   id: number;
-  order_id: number;
-  price: number;
-  product_id: number;
+  order_id: string;
+  price: string;
+  product_id: string;
   side: string;
   size: string;
+  time: string;
   type: "open" | "done";
 }
 
