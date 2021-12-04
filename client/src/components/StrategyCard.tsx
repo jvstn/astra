@@ -1,31 +1,43 @@
 import {
-  Card, CardContent, Typography
+  Card,
+  CardContent,
+  ClassNameMap,
+  createStyles,
+  Theme,
+  Typography,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import React, { ReactElement } from "react";
 import { StrategyContent } from "../features/StrategySelector/StrategyContent";
 import StrategyModal from "../features/StrategySelector/StrategyModal";
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    card: {
+      width: "16vw",
+    },
+    cardText: {
+      fontSize: "12rem"
+    }
+  })
+);
+
 interface Props {
   content: StrategyContent;
-  // onClick: MouseEventHandler;
 }
 
-export default function StrategyCard({
-  content,
-}: Props): ReactElement {
-
-
-
+export default function StrategyCard({ content }: Props): ReactElement {
+  const classes: ClassNameMap = useStyles();
   return (
     <>
-      <Card variant="outlined" >
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {content.name}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              {content.description}
-            </Typography>
+      <Card className={classes.card} variant="outlined">
+        <CardContent>
+          <Typography variant="h4" fontSize={17} component="div">
+            {content.name}
+          </Typography>
+          <Typography sx={{mb: 1.5}}  fontSize={15}  color="text.secondary">
+            {content.description}
+          </Typography>
         </CardContent>
         <StrategyModal content={content} />
       </Card>

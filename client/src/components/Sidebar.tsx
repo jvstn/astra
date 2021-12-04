@@ -1,9 +1,11 @@
 import { Menu } from "@mui/icons-material";
+import { Theme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import { createStyles, makeStyles } from '@mui/styles'
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -14,13 +16,21 @@ import * as React from "react";
 
 const drawerWidth = 240;
 
+const useStyles = makeStyles((theme: Theme) => {
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.background.default,
+    }
+  })
+});
+
 interface Props {
   children: React.ReactNode;
 }
 
 export default function Sidebar({children}: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const classes = useStyles();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };

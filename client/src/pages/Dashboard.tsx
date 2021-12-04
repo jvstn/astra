@@ -1,4 +1,5 @@
-import { Grid, Stack } from "@mui/material";
+import { ClassNameMap, Grid, Stack, Theme } from "@mui/material";
+import { makeStyles, createStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { ReactElement, useContext, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
@@ -7,38 +8,54 @@ import AssetSelector from "../features/AssetSelector/AssetSelector";
 import OrdersList from "../features/OrdersList/OrdersList";
 import StrategySelector from "../features/StrategySelector/StrategySelector";
 
+const useStyles = makeStyles((theme: Theme) => {
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.background.default,
+      display: "flex",
+      justifyContent: "center",
+    },
+  });
+});
 
 export default function Dashboard(): ReactElement {
   const socket = useContext(SocketContext);
+  const classes: ClassNameMap = useStyles();
 
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log('connected');
+    socket.on("connect", () => {
+      console.log("connected");
     });
-    socket.on('FILL', (data) => {
-      console.log("FILL" ,data);
-    })
-    socket.on('OPEN', (data) => {
-      console.log('OPEN', data);
+    socket.on("FILL", (data) => {
+      console.log("FILL", data);
+    });
+    socket.on("OPEN", (data) => {
+      console.log("OPEN", data);
     });
 
-    socket.off('FILL');
-    socket.off('OPEN');
+    socket.off("FILL");
+    socket.off("OPEN");
   }, [socket]);
-  
+
   return (
     <>
-      <Box display="flex" justifyContent="center">
+      <Box className={classes.root}>
         <Sidebar>
-          <Grid>
-            <Stack spacing={5}>
+          <Grid container spacing={3}>
+            <Grid item md={1}>
               <AssetSelector />
-              <StrategySelector />
-            </Stack>
-              <Stack direction="row">
+            </Grid>
+            <Grid item md={8}>
+              <Stack spacing={5}>
+                <StrategySelector />
+              </Stack>
+            </Grid>
+            <Grid item md={3}>
+              <Stack>
                 <OrdersList orderType="fill" />
                 <OrdersList orderType="open" />
               </Stack>
+            </Grid>
           </Grid>
         </Sidebar>
       </Box>

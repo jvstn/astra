@@ -20,7 +20,7 @@ type StrategyInputOption = {
 export const limitOrderContent = {
   id: "target-price",
   name: "Target Price",
-  description: "Buy at certain price",
+  description: "Buy/Sell at a certain price",
   inputs: [
     { name: "price", type: "number", label: "Price" },
     { name: "size", type: "number", label: "Amount" },
@@ -39,7 +39,7 @@ export const limitOrderContent = {
 export const rsiContent = {
   id: "rsi",
   name: "Relative Strength",
-  description: "Buy when oversold, sell when overbought",
+  description: "Buy the dip, sell the peak",
   inputs: [{ name: "interval", type: "number", label: "Interval" }],
 };
 

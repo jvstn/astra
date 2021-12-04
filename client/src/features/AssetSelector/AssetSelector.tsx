@@ -11,16 +11,15 @@ export default function AssetSelector({}: Props): ReactElement {
 
   const assets = {
     "BTC-USD": "bitcoin",
-    LINK: "chainlink",
-    BAT: "basic-attention-token",
+    "ETH-BTC": "ethereum",
   };
 
   return (
     <>
-      <Typography textAlign="center" variant="h4" gutterBottom>
-        Select an asset
+      <Typography textAlign="center" variant="body1" gutterBottom>
+        Select <br/> Asset
       </Typography>
-      <Stack display="flex" justifyContent="center" direction="row"  spacing={20}>
+      <Stack display="flex" justifyContent="center"  spacing={20}>
         {Object.entries(assets).map(([product_id, productName]) => (
           <CryptoCard
             onClick={() => dispatch(setSelectedAsset(product_id))}
