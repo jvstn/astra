@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import asset from '../features/AssetSelector/assetSelectorSlice';
+import assetData from '../features/AssetData/assetDataSlice';
 import strategy from '../features/StrategySelector/strategySlice';
 import orders from '../features/OrdersList/ordersSlice';
 
 export const store = configureStore({
   reducer: {
     asset,
+    assetData,
     strategy,
     orders,
   },

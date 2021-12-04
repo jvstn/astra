@@ -2,8 +2,10 @@ import { ClassNameMap, Grid, Stack, Theme } from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { ReactElement, useContext, useEffect } from "react";
+import LineGraph from "../components/LineGraph";
 import Sidebar from "../components/Sidebar";
 import { SocketContext } from "../context/socket";
+import AssetData from "../features/AssetData/AssetData";
 import AssetSelector from "../features/AssetSelector/AssetSelector";
 import OrdersList from "../features/OrdersList/OrdersList";
 import StrategySelector from "../features/StrategySelector/StrategySelector";
@@ -33,6 +35,8 @@ export default function Dashboard(): ReactElement {
       console.log("OPEN", data);
     });
 
+    
+
     socket.off("FILL");
     socket.off("OPEN");
   }, [socket]);
@@ -47,6 +51,7 @@ export default function Dashboard(): ReactElement {
             </Grid>
             <Grid item md={8}>
               <Stack spacing={5}>
+                <AssetData />
                 <StrategySelector />
               </Stack>
             </Grid>

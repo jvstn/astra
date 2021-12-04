@@ -1,13 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { AsyncInitialState } from '../../store/hooks';
+import { RootState } from '../../store/store';
 
 
-interface InitialState {
+interface InitialState extends AsyncInitialState {
   selectedAsset: string;
 }
 
 const initialState: InitialState = {
   selectedAsset: 'BTC-USD',
+  loading: 'idle',
+  error: null,
 };
+
 
 const assetSelectorSlice = createSlice({
   name: 'assetSelector',
