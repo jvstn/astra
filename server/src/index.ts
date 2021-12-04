@@ -20,7 +20,7 @@ const io = new Server(server, {
   }
 });
 app.set('io', io);
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/skyro';
 
 app.use(express.json());

@@ -1,11 +1,12 @@
 import { Menu } from "@mui/icons-material";
 import { Theme } from "@mui/material";
+import {Link} from 'react-router-dom';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import { createStyles, makeStyles } from '@mui/styles'
+import { createStyles, makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -20,21 +21,20 @@ const useStyles = makeStyles((theme: Theme) => {
   createStyles({
     root: {
       backgroundColor: theme.palette.background.default,
-    }
-  })
+    },
+  });
 });
 
 interface Props {
   children: React.ReactNode;
 }
 
-export default function Sidebar({children}: Props) {
+export default function Sidebar({ children }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const classes = useStyles();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
 
   const drawer = (
     <div>
@@ -42,19 +42,17 @@ export default function Sidebar({children}: Props) {
       <Divider />
       <List>
         {["Dashboard", "Watchlist", "Strategies"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+          <Link to={"/"+text.toLowerCase()}>
+            <ListItem button key={text}>
+              <ListItemIcon></ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />
-      
     </div>
   );
-
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -66,9 +64,7 @@ export default function Sidebar({children}: Props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar
-          sx={{ display: { sm: "none" } }}
-        >
+        <Toolbar sx={{ display: { sm: "none" } }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
