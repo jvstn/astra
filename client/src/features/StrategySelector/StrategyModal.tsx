@@ -12,7 +12,7 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import React, { ReactElement, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { StrategyContent } from "./StrategyContent";
+import { StrategyContent } from "../../utils/strategyContent";
 import { OrderSide, setSelectedStrategy, startStrategy, StrategyRequestBody } from "./strategySlice";
 
 const style = {

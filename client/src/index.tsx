@@ -10,6 +10,7 @@ import * as serviceWorker from "./serviceWorker";
 import { store } from "./store/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Watchlist from "./pages/Watchlist";
+import Strategies from "./pages/Strategies";
 axios.defaults.baseURL = "http://localhost:5001";
 
 ReactDOM.render(
@@ -19,8 +20,9 @@ ReactDOM.render(
         <Provider store={store}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="/strategies" element={<Strategies />} />
             </Routes>
           </BrowserRouter>
         </Provider>

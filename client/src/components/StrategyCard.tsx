@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { ReactElement } from "react";
-import { StrategyContent } from "../features/StrategySelector/StrategyContent";
+import { StrategyContent } from "../utils/strategyContent";
 import StrategyModal from "../features/StrategySelector/StrategyModal";
 
 const useStyles = makeStyles((theme: Theme) =>

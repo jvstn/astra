@@ -1,10 +1,10 @@
 import { Stack, Typography } from '@mui/material';
 import React, { ReactElement } from 'react'
 import StrategyCard from '../../components/StrategyCard'
-import { bollingerBandsContent, limitOrderContent, rsiContent, StrategyContent } from './StrategyContent'
+import { bollingerBandsContent, targetPriceContent, rsiContent, StrategyContent } from '../../utils/strategyContent'
 
 const strategyContents: StrategyContent[] = [
-  limitOrderContent,
+  targetPriceContent,
   bollingerBandsContent,
   rsiContent,
 ];
