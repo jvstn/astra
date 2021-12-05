@@ -6,6 +6,7 @@ export interface IWatchlistItem {
 
 export interface IUser {
   username: string;
+  password?: string;
   watchlist: IWatchlistItem[];
 }
 
@@ -20,10 +21,11 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
-  
-  watchlist: [WatchlistItemSchema]
-})
+  password: String,
+  watchlist: [WatchlistItemSchema],
+});
 
 const User = mongoose.model<IUser>('User', UserSchema);
 

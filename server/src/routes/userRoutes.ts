@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { Router } from "express";
-import { createUser, getCoinbaseAccounts } from "../controllers/user";
+import { createUser } from "../controllers/auth/createUser";
+
 import {
   addToWatchlist,
   getWatchList,
@@ -9,9 +10,8 @@ import {
 
 const router = Router();
 
-router.get("/", createUser);
+router.post("/create", createUser);
 
-router.get("/coinbase-accounts", getCoinbaseAccounts);
 
 router.get("/watchlist/:username", getWatchList);
 router.post("/watchlist", addToWatchlist);
