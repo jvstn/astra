@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { Router } from "express";
+import { checkUser } from "../controllers/auth/checkUser";
 import { createUser } from "../controllers/auth/createUser";
 import { login } from "../controllers/auth/loginUser";
 
@@ -14,6 +15,7 @@ const router = Router();
 
 router.post("/create", createUser);
 router.post("/login", login);
+router.get("/check", checkUser);
 
 
 
