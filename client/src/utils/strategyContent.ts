@@ -31,8 +31,8 @@ export const targetPriceContent = {
       type: "select",
       label: "Side",
       options: [
-        { value: "BUY", label: "Buy" },
-        { value: "SELL", label: "Sell" },
+        { value: "BUY", label: "BUY" },
+        { value: "SELL", label: "SELL" },
       ],
     },
   ],

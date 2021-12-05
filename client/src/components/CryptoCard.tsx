@@ -13,7 +13,7 @@ export default function CryptoCard({ product_id, onClick }: Props): ReactElement
   const baseName = product_id.split('-')[0];
   const name = PRODUCT_NAMES[baseName].toLowerCase();
   return (
-    <Card sx={{ maxWidth: 70 }} onClick={onClick}>
+    <Card role="button" sx={{ maxWidth: 70 }} onClick={onClick}>
       <CardActionArea>
         <CardMedia
           component="img"

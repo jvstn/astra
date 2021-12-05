@@ -65,7 +65,7 @@ export default function LineGraph({ name, dates, values, height = 350 }: Props):
 
   return (
     <div>
-      <Chart options={options} series={series} type="area" height={height} />
+      <Chart aria-label="graphics-doc" options={options} series={series} type="area" height={height} />
     </div>
   );
 }

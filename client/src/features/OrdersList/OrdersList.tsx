@@ -50,10 +50,13 @@ export default function OrdersList({ orderType }: Props): ReactElement {
   return (
     <>
       <Typography variant="h6">{orderType.toUpperCase()}S</Typography>
-        <List>
-          {orders.map((order: Order) => (
+        <List aria-live="polite">
+          {orders.map((order: Order, index) => (
             <ListItem
-              key={order.id}
+              key={index}
+              role="listitem"
+              aria-posinset={index + 1}
+              aria-setsize={orders.length}
               className={`
               ${orderItem}
               ${isBuySide(order) ? buySideItem : sellSideItem}`}

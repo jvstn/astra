@@ -5,6 +5,8 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  Stack,
+  TextField,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -21,7 +23,6 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  height: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -101,41 +102,45 @@ export default function StrategyModal({ content }: Props): ReactElement {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {name}
-          </Typography>
+          <Stack spacing={5}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              {name}
+            </Typography>
 
-          {inputs.map((input, index) =>
-            !input.options ? (
-              <FormControl key={index}>
-                <InputLabel htmlFor={input.name}>{input.name}</InputLabel>
-                <Input
-                  id={input.name}
-                  type="number"
-                  value={inputValues[input.name]}
-                  onChange={(e) =>
-                    inputSetters[input.name](e.currentTarget.value)
-                  }
-                />
-              </FormControl>
-            ) : (
-              <FormControl key={index}>
-                <InputLabel htmlFor={input.name}>{input.name}</InputLabel>
-                <Select
-                  onChange={(e: SelectChangeEvent<string>) =>
-                    inputSetters[input.name](e.target.value as string)
-                  }
-                >
-                  {input.options.map((option, index) => (
-                    <MenuItem key={index} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            )
-          )}
+            {inputs.map((input, index) =>
+              !input.options ? (
+                <FormControl key={index}>
+                  <TextField
+                    id={input.name}
+                    type="number"
+                    label={input.name}
+                    // aria-label={input.name}
+                    value={inputValues[input.name]}
+                    onChange={(e) =>
+                      inputSetters[input.name](e.currentTarget.value)
+                    }
+                  />
+                </FormControl>
+              ) : (
+                <FormControl key={index}>
+                  <InputLabel htmlFor={input.name}>{input.name}</InputLabel>
+                  <Select
+                    label={input.name}
+                    onChange={(e: SelectChangeEvent<string>) =>
+                      inputSetters[input.name](e.target.value as string)
+                    }
+                  >
+                    {input.options.map((option, index) => (
+                      <MenuItem key={index} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )
+            )}
           <Button onClick={() => handleSubmit(requestBody)}>Submit</Button>
+          </Stack>
         </Box>
       </Modal>
     </div>
