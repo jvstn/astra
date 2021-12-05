@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import React, { ReactElement, useEffect } from 'react'
 import LineGraph from '../../components/LineGraph';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -18,7 +18,13 @@ export default function AssetData({ }: Props): ReactElement {
   }, [selectedAsset])
   return (
     <>
-      <Typography variant="h2">{selectedAsset}</Typography>
+      <Stack alignItems="center" direction="row" spacing={20}>
+        <Typography variant="h2">{selectedAsset}</Typography>
+        <Stack textAlign="center" justifyItems="center">
+          <Typography variant="h4">$ {prices[299]}</Typography>
+          <Typography variant="body1">Last trade price</Typography>
+        </Stack>
+      </Stack>
       <LineGraph name={selectedAsset} dates={dates.slice(0, 100)} values={prices.slice(0, 100)} />
     </>
   )
