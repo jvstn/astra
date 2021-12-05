@@ -6,7 +6,7 @@ Create a crpyto trading bot that executes trades at a desired price.
 
 Add additional strategies continuous strategies that can trade crypto based on technical analysis
 
-Hosted application: 137.184.56.247
+[Hosted application](137.184.56.247)
 
 # Project Architecture
 
@@ -30,13 +30,20 @@ Response: { baseBalance: 123454.84, quoteBalance: 123435.86 }
 
 The dashboard is where the magic happens. It's here that you can start strategies, wait for the strategy to accumulate data, and let the algorithm buy for you. It uses WebSockets to get real-time updates whenever a buy or sell is made.
 
+![Dashboard](./screenshots/dashboard.png)
+
 ## Watchlist
 
 The watchlist allows you to pick from a particular product you want to keep an at and get a glance at its chart data.
 
+![watchlist](./screenshots/strategies.png)
+
 ## Strategies
 
 The strategies page briefly explains what strategies are being implemented by the bot and the methodology behind them. The target price strategy lets you place an order that will fill whenever that price is reached. Bollinger bands keep track of a moving average and buys/sells when the price moves out of that range. The Relative Strength Index is a trend analysis that keeps track of when trends are beginning to reverse, essentially buying the dip and selling the peak.
+
+![watchlist](./screenshots/strategies.png)
+
 
 # Installation
 
