@@ -19,14 +19,38 @@ export interface Order {
 interface InitialState extends AsyncInitialState {
   fill: Order[];
   open: Order[];
+  baseBalance: number;
+  quoteBalance: number;
 }
 
 const initialState: InitialState = {
-  loading: "idle",
-  error: null,
   fill: [],
   open: [],
+  baseBalance: 0,
+  quoteBalance: 0,
+  loading: "idle",
+  error: null,
 };
+
+export const getAccountBalances = createAsyncThunk(
+  "orders/getAccount",
+  async (_, { getState, rejectWithValue }) => {
+    const state = getState() as RootState;
+    const { selectedAsset } = state.asset;
+    try {
+      const {data} = await axios.get(
+        "/user/account", {
+          params: {
+            product_id: selectedAsset,
+          },
+      }
+      );
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 export const fetchOrders = createAsyncThunk<
   any,
@@ -60,7 +84,7 @@ const ordersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Handle open orders
+    // Handle orders
     builder.addCase(fetchOrders.pending, (state) => {
       state.loading = "pending";
     });
@@ -77,6 +101,22 @@ const ordersSlice = createSlice({
       state.loading = "failed";
       state.error = action.error.message as string;
     });
+    // Handle account balance
+    builder.addCase(getAccountBalances.pending, (state) => {
+      state.loading = "pending";
+    }
+    );
+    builder.addCase(getAccountBalances.fulfilled, (state, { payload }) => {
+      state.loading = "succeeded";
+      state.baseBalance = Number(payload.baseBalance);
+      state.quoteBalance = Number(payload.quoteBalance);
+    }
+    );
+    builder.addCase(getAccountBalances.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.error.message as string;
+    }
+    );
   },
 });
 

@@ -5,16 +5,18 @@ import { coinbaseApi } from "../util/coinbaseUtils";
 export const getAccount = async (req: Request, res: Response) => {
   try {
     let allAccounts = await coinbaseApi.rest.account.listAccounts();
-    const currency = req.query.currency as string;
-    let activeAccount = allAccounts.filter(
-      (account) => account.currency === currency
-    );
+    const product_id = req.query.product_id as string;
+    const [baseCurrency, quoteCurrency] = product_id.split("-");
+    const baseBalance = allAccounts.filter(
+      (account) => account.currency === baseCurrency
+    )[0].balance;
+    const quoteBalance = allAccounts.filter(
+      (account) => account.currency === quoteCurrency
+    )[0].balance;
 
-    return res.status(200).json(activeAccount[0]);
+    return res.status(200).json({ baseBalance, quoteBalance });
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
-    
-  
-}
+};
