@@ -13,6 +13,7 @@ export default function AssetData({ }: Props): ReactElement {
   const selectedAsset = useAppSelector(state => state.asset.selectedAsset);
   const dates = useAppSelector(state => state.assetData.dates);
   const prices = useAppSelector(state => state.assetData.prices);
+  const quoteCurrency = selectedAsset.split('-')[1];
   useEffect(() => {
     dispatch(fetchAssetData(selectedAsset));
   }, [selectedAsset])
@@ -21,7 +22,7 @@ export default function AssetData({ }: Props): ReactElement {
       <Stack alignItems="center" direction="row" spacing={30}>
         <Typography variant="h4">{selectedAsset}</Typography>
         <Stack textAlign="center" justifyItems="center">
-          <Typography variant="h4">$ {prices[299]}</Typography>
+          <Typography variant="h4">{prices[299]} {quoteCurrency}</Typography>
         </Stack>
       </Stack>
       <LineGraph name={selectedAsset} dates={dates.slice(0, 100)} values={prices.slice(0, 100)} />
