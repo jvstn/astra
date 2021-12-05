@@ -27,7 +27,7 @@ export const login = async (req: Request, res: Response) => {
     if (!match) return res.status(400).send({ message: "Incorrect message" });
 
     const token = await jwt.sign(
-      { username: username },
+      { username },
       process.env.JWT_SECRET as string,
       {
         expiresIn: "14d",

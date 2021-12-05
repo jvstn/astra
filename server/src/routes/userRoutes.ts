@@ -8,6 +8,7 @@ import {
   getWatchList,
   removeFromWatchlist
 } from "../controllers/watchlist";
+import { checkAuth } from "../middleware/checkAuth";
 
 const router = Router();
 
@@ -16,9 +17,9 @@ router.post("/login", login);
 
 
 
-router.get("/watchlist/:username", getWatchList);
-router.post("/watchlist", addToWatchlist);
-router.delete("/watchlist", removeFromWatchlist);
+router.get("/watchlist/:username", checkAuth, getWatchList);
+router.post("/watchlist", checkAuth, addToWatchlist);
+router.delete("/watchlist", checkAuth, removeFromWatchlist);
 
 
 
