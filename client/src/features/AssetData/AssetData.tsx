@@ -18,11 +18,10 @@ export default function AssetData({ }: Props): ReactElement {
   }, [selectedAsset])
   return (
     <>
-      <Stack alignItems="center" direction="row" spacing={20}>
-        <Typography variant="h2">{selectedAsset}</Typography>
+      <Stack alignItems="center" direction="row" spacing={30}>
+        <Typography variant="h4">{selectedAsset}</Typography>
         <Stack textAlign="center" justifyItems="center">
           <Typography variant="h4">$ {prices[299]}</Typography>
-          <Typography variant="body1">Last trade price</Typography>
         </Stack>
       </Stack>
       <LineGraph name={selectedAsset} dates={dates.slice(0, 100)} values={prices.slice(0, 100)} />

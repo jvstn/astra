@@ -14,9 +14,6 @@ export default function StrategySelector(): ReactElement {
   
   return (
     <>
-      <Typography textAlign="center" variant="h6" >
-        Strategies
-      </Typography>
       <Stack direction="row" spacing={5}>
         {strategyContents.map((content, index) => (
           <StrategyCard content={content} />
