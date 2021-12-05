@@ -114,7 +114,6 @@ export default function StrategyModal({ content }: Props): ReactElement {
                     id={input.name}
                     type="number"
                     label={input.name}
-                    // aria-label={input.name}
                     value={inputValues[input.name]}
                     onChange={(e) =>
                       inputSetters[input.name](e.currentTarget.value)

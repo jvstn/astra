@@ -19,7 +19,7 @@ export default function AssetData({ }: Props): ReactElement {
   return (
     <>
       <Typography variant="h2">{selectedAsset}</Typography>
-      <LineGraph name={selectedAsset} dates={dates} values={prices} />
+      <LineGraph name={selectedAsset} dates={dates.slice(0, 100)} values={prices.slice(0, 100)} />
     </>
   )
 }

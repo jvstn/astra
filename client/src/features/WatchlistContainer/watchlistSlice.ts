@@ -29,7 +29,9 @@ const initialState: WatchlistState = {
 export const getProductList = createAsyncThunk(
   "watchlist/getProductList",
   async () => {
-    const response = await axios.get(
+    const instance = axios.create();
+    delete instance.defaults.headers.common["Authorization"];
+    const response = await instance.get(
       "https://api-public.sandbox.exchange.coinbase.com/products"
     );
     const products = response.data.map((product: any) => product.id);

@@ -21,8 +21,10 @@ export const fetchAssetData = createAsyncThunk<
   any,
   string,
   { state: RootState }
->("assetData", async (product_id, thunkApi) => {
-  const { data } = await axios.get(
+  >("assetData", async (product_id, thunkApi) => {
+    const instance = axios.create();
+    delete instance.defaults.headers.common["Authorization"];
+  const { data } = await instance.get(
     `https://api-public.sandbox.exchange.coinbase.com/products/${product_id}/candles/`,
     {
       params: {
