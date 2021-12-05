@@ -1,19 +1,20 @@
 import { Menu } from "@mui/icons-material";
-import { Theme } from "@mui/material";
-import {Link} from 'react-router-dom';
+import { Stack, Theme, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import { createStyles, makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
+import { ClassNameMap, createStyles, makeStyles } from "@mui/styles";
 import * as React from "react";
+import { Link } from "react-router-dom";
+import logoPic from '../assets/rocket-logo.png';
 
 const drawerWidth = 240;
 
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme: Theme) => {
   createStyles({
     root: {
       backgroundColor: theme.palette.background.default,
+    },
+    link: {
+      textDecoration: "none",
+      color: theme.palette.text.primary,
     },
   });
 });
@@ -31,18 +36,28 @@ interface Props {
 
 export default function Sidebar({ children }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const classes = useStyles();
+  const classes: ClassNameMap = useStyles();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const drawer = (
     <div>
-      <Toolbar />
+      <Toolbar>
+        <Stack alignItems="center" direction="row">
+          <Typography
+            fontFamily={["Orbitron", "sans-serif"].join(",")}
+            variant="h5"
+          >
+            Astrabot
+          </Typography>
+        <img src={logoPic} height={80} />
+        </Stack>
+      </Toolbar>
       <Divider />
       <List>
         {["Dashboard", "Watchlist", "Strategies"].map((text, index) => (
-          <Link to={"/"+text.toLowerCase()}>
+          <Link style={{textDecoration: "none", color: "inherit"}} to={"/" + text.toLowerCase()}>
             <ListItem button key={text}>
               <ListItemIcon></ListItemIcon>
               <ListItemText primary={text} />

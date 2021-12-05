@@ -4,20 +4,23 @@ import {createContext} from 'react'
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#00bcd4",
+      main: "#0077EF",
       dark: "#6E6F71",
     },
     secondary: {
       main: "#f50057",
     },
     background: {
-      default: "#09090C",
-      paper: "#111317"
+      default: "#0A1929",
+      paper: "#132F4C",
     },
     text: {
-      primary: "#6E6F71",
-      secondary: "#9E9E9E",
+      primary: "#fff",
+      secondary: "#6E6F71",
     },
   },
+  typography: {
+    fontFamily: ["Roboto Mono", "monospace"].join(","),
+  }
 });
 
