@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { Router } from "express";
 import { createUser } from "../controllers/auth/createUser";
+import { login } from "../controllers/auth/loginUser";
 
 import {
   addToWatchlist,
@@ -11,6 +12,8 @@ import {
 const router = Router();
 
 router.post("/create", createUser);
+router.post("/login", login);
+
 
 
 router.get("/watchlist/:username", getWatchList);
