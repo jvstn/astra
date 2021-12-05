@@ -49,7 +49,7 @@ export const rsiContent = {
 export const bollingerBandsContent: StrategyContent = {
   id: "boll-bands",
   name: "Bollinger Bands",
-  explanation: "Bollinger bands are a volatility indicator that measures the distance between the price and the average price over a specified number of periods. The indicator is calculated by subtracting the average price from the price and then dividing the result by the standard deviation of the price over the specified number of periods. The indicator is considered overbought when the price is above the upper band and oversold when the price is below the lower band.",
+  explanation: "Bollinger bands are a volatility indicator that measures the distance between the price and the average price over a specified number of periods. The indicator is calculated by subtracting the average price from the price and then dividing the result by the standard deviation of the price over the specified number of periods.",
   description: "Buy with in range of moving average",
   inputs: [{ name: "interval", type: "number", label: "Interval" }],
 };
