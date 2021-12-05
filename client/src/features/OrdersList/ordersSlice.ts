@@ -32,7 +32,7 @@ export const fetchOrders = createAsyncThunk<
   any,
   OrderType,
   { state: RootState }
->("orders/fetchOpenOrders", async (orderType, { getState }) => {
+>("orders/fetchOpenOrders", async (orderType, { getState,  }) => {
   const product_id = getState().asset.selectedAsset;
   const { data: res } = await axios.get(`/orders/${orderType}/${product_id}`);
 

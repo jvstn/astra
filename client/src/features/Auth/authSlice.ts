@@ -92,6 +92,7 @@ const authSlice = createSlice({
       state.loading = "pending";
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      localStorage.setItem("token", action.payload.token);
       state.isAuthenticated = true;
       state.token = action.payload.token;
       state.userId = action.payload.userId;

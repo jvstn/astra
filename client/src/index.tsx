@@ -13,7 +13,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Watchlist from "./pages/Watchlist";
 import Strategies from "./pages/Strategies";
 axios.defaults.baseURL = "http://localhost:5001";
-
+axios.defaults.headers.common["Authorization"] =
+  "Bearer " + localStorage.getItem("token");
+console.log(localStorage.getItem("token"));
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
