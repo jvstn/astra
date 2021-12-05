@@ -1,12 +1,16 @@
 import React, { ReactElement } from "react";
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import { createStyles, makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 interface Props {
   name: string;
   dates: string[];
   values: number[];
   height?: number;
 }
+
+
 
 export default function LineGraph({ name, dates, values, height = 350 }: Props): ReactElement {
   const series = [
@@ -34,7 +38,7 @@ export default function LineGraph({ name, dates, values, height = 350 }: Props):
     },
     markers: {
       size: 0,
-      colors: ["#ffffff"],
+      // colors: ["#ffffff"],
     },
     title: {
       text: "5hr Price Movements ",
@@ -77,7 +81,7 @@ export default function LineGraph({ name, dates, values, height = 350 }: Props):
       }
     },
     tooltip: {
-      shared: false,
+      theme: "dark",
     },
   };
 

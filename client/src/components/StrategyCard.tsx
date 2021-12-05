@@ -35,7 +35,7 @@ export default function StrategyCard({ content }: Props): ReactElement {
           <Typography variant="h4" fontSize={17} component="div">
             {content.name}
           </Typography>
-          <Typography sx={{mb: 1.5}}  fontSize={15}  color="text.secondary">
+          <Typography sx={{mb: 1.5}}  fontSize={15}  color="text.primary">
             {content.description}
           </Typography>
         </CardContent>
