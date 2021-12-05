@@ -49,6 +49,8 @@ The strategies page briefly explains what strategies are being implemented by th
 
 To use this app you will need to create an account at the Coinbase Pro Sandbox
 
+
+
 Clone this app to your local computer and cd into the root folder for this project
 
 Then cd into your client folder and run
@@ -62,6 +64,17 @@ Then cd back out of that folder
 And install the libraries for the server using
 
 `cd server && yarn install`
+
+After you have done all that, you'll need to create a sandbox api key from you Coinbase Sandbox account
+
+Within that process you'll receive a passphrase, a secret and api key, respectively. Place them in a .env in the server folder
+
+```text
+COINBASE_API_SECRET="YOUR_SECRET_HERE"
+COINBASE_API_KEY="YOUR_API_KEY_HERE"
+COINBASE_API_PASSPHRASE="YOUR_PASSPHRASE"
+JWT_SECRET="RANDOM_STRING_HERE"
+```
 
 Then when you're ready to startup either the client or server run:
 
