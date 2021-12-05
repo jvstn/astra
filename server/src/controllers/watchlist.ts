@@ -8,12 +8,14 @@ interface AddWatchListRequest {
 
 export const getWatchList = async (req: Request, res: Response) => {
   try {
-    const { username } = req.body;
+    const { username } = req.params;
+    console.log(username);
     const user = await User.findOne({ username });
     if (!user) {
       res.status(404).send("User not found");
     } else {
-      res.send(user.watchlist);
+      const product_ids = user.watchlist.map((item) => item.product_id);
+      res.send(product_ids);
     }
   } catch (error) {
     console.log(error);
@@ -24,13 +26,14 @@ export const getWatchList = async (req: Request, res: Response) => {
 export const addToWatchlist = async (req: Request, res: Response) => {
   try {
     const { product_id, username }: AddWatchListRequest = req.body;
+    console.log(product_id, username);
     const user = await User.findOne({ username });
     if (!user) {
       res.status(404).send("User not found");
     } else {
       user.watchlist.push({ product_id });
       await user.save();
-      res.send(user.watchlist);
+      res.send(user.watchlist.unshift());
     }
   } catch (error) {
     console.log(error);
@@ -40,7 +43,8 @@ export const addToWatchlist = async (req: Request, res: Response) => {
 
 export const removeFromWatchlist = async (req: Request, res: Response) => {
   try {
-    const { product_id, username } = req.body;
+    const product_id = req.query.product_id as string;
+    const username = req.query.username as string;
     const user = await User.findOne({ username });
     if (!user) {
       res.status(404).send("User not found");
@@ -49,6 +53,7 @@ export const removeFromWatchlist = async (req: Request, res: Response) => {
         (item) => item.product_id !== product_id
       );
       await user.save();
+      console.log(user.watchlist);
       res.send(user.watchlist);
     }
   } catch (error) {

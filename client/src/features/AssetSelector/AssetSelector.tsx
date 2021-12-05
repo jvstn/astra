@@ -23,7 +23,7 @@ export default function AssetSelector({}: Props): ReactElement {
         {Object.entries(assets).map(([product_id, productName]) => (
           <CryptoCard
             onClick={() => dispatch(setSelectedAsset(product_id))}
-            productName={productName}
+            product_id={product_id}
           />
         ))}
       </Stack>

@@ -3,6 +3,7 @@ import asset from '../features/AssetSelector/assetSelectorSlice';
 import assetData from '../features/AssetData/assetDataSlice';
 import strategy from '../features/StrategySelector/strategySlice';
 import orders from '../features/OrdersList/ordersSlice';
+import watchlist from '../features/WatchlistContainer/watchlistSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     assetData,
     strategy,
     orders,
+    watchlist,
   },
 });
 

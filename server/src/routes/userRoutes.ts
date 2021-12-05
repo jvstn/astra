@@ -13,7 +13,7 @@ router.get("/", createUser);
 
 router.get("/coinbase-accounts", getCoinbaseAccounts);
 
-router.get("/watchlist", getWatchList);
+router.get("/watchlist/:username", getWatchList);
 router.post("/watchlist", addToWatchlist);
 router.delete("/watchlist", removeFromWatchlist);
 

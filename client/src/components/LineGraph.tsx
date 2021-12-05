@@ -5,9 +5,10 @@ interface Props {
   name: string;
   dates: string[];
   values: number[];
+  height?: number;
 }
 
-export default function LineGraph({ name, dates, values }: Props): ReactElement {
+export default function LineGraph({ name, dates, values, height = 350 }: Props): ReactElement {
   const series = [
     {
       name,
@@ -18,14 +19,13 @@ export default function LineGraph({ name, dates, values }: Props): ReactElement 
     chart: {
       type: "area",
       stacked: false,
-      height: 350,
       zoom: {
         type: "x",
         enabled: true,
         autoScaleYaxis: true,
       },
       toolbar: {
-        autoSelected: "zoom",
+        show: false,
       },
     },
     dataLabels: {
@@ -65,7 +65,7 @@ export default function LineGraph({ name, dates, values }: Props): ReactElement 
 
   return (
     <div>
-      <Chart options={options} series={series} type="area" height={350} />
+      <Chart options={options} series={series} type="area" height={height} />
     </div>
   );
 }
