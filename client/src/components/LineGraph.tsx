@@ -30,13 +30,18 @@ export default function LineGraph({ name, dates, values, height = 350 }: Props):
     },
     dataLabels: {
       enabled: false,
+      
     },
     markers: {
       size: 0,
+      colors: ["#ffffff"],
     },
     title: {
       text: "5hr Price Movements ",
       align: "left",
+      style: {
+        color: "#ffffff",
+      }
     },
     fill: {
       type: "gradient",
@@ -51,15 +56,28 @@ export default function LineGraph({ name, dates, values, height = 350 }: Props):
     yaxis: {
       title: {
         text: "Price",
+        style: {
+          color: "#ffffff",
+        },
       },
+      labels: {
+        style: {
+          colors: "#ffffff",
+        }
+      }
+
     },
     xaxis: {
       type: "datetime",
       categories: dates,
+      labels: {
+        style: {
+          colors: "#ffffff",
+        }
+      }
     },
     tooltip: {
-      shared: true,
-      
+      shared: false,
     },
   };
 
