@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { socket, SocketProvider } from "./context/socket";
 import { theme } from "./context/theme";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store/store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Provider store={store}>
           <BrowserRouter>
             <Routes>
+              <Route path="/" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/watchlist" element={<Watchlist />} />
               <Route path="/strategies" element={<Strategies />} />

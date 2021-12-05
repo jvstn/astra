@@ -32,7 +32,7 @@ export const createUser = createAsyncThunk<
   }
 });
 
-const login = createAsyncThunk<
+export const loginUser = createAsyncThunk<
   any,
   { username: string; password: string },
   { state: RootState }
@@ -74,20 +74,20 @@ const authSlice = createSlice({
       state.error = action.payload as string;
     });
     // login
-    builder.addCase(login.pending, (state, action) => {
+    builder.addCase(loginUser.pending, (state, action) => {
       state.loading = "pending";
     }
     );
-    builder.addCase(login.fulfilled, (state, action) => {
+    builder.addCase(loginUser.fulfilled, (state, action) => {
       state.isAuthenticated = true;
       state.token = action.payload.token;
       state.userId = action.payload.userId;
       state.loading = "succeeded";
     }
     );
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = "failed";
-      state.error = action.payload as string;
+      state.error = action.error.message as string;
     }
     );
   },
