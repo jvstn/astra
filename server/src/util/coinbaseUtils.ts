@@ -8,24 +8,3 @@ export const coinbaseApi = new CoinbasePro({
   useSandbox: true,
 });
 
-export const getActiveAccounts = async (service: "cb" | "pro") => {
-  let accountType: "listAccounts" | "listCoinbaseAccounts";
-  if (service === "cb") {
-    accountType = "listCoinbaseAccounts";
-  } else {
-    accountType = "listAccounts";
-  }
-  let allAccounts =
-    await await coinbaseApi.rest.account[accountType]();
-  let activeAccounts = allAccounts.map((account) => {
-    if (parseFloat(account.balance) > 0) {
-      return {
-        id: account.id,
-        currency: account.currency,
-        balance: account.balance
-      }
-    }
-  }).filter(account => account !== undefined);
-
-  return activeAccounts;
-};
