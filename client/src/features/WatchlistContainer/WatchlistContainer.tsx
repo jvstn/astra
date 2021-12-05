@@ -34,12 +34,13 @@ export default function WatchlistContainer({}: Props): ReactElement {
 
   return (
     <>
-      <Stack spacing={10}>
+      <Stack spacing={2}>
+      <Typography variant="body1"> Watchlist </Typography>
         <Stack direction="row">
           {watchlist.map(({ product_id, assetData }, index) => (
             <>
               <Stack flexWrap="wrap">
-                <Stack spacing={20} direction="row">
+                <Stack spacing={26} direction="row">
                   <Typography key={index}>{product_id}</Typography>
                   <DeleteIcon
                     color="error"
@@ -57,10 +58,14 @@ export default function WatchlistContainer({}: Props): ReactElement {
             </>
           ))}
         </Stack>
-        {/* <Typography> Add to Watchlist </Typography> */}
-        <Stack spacing={10} flexWrap="wrap" direction="row">
+        <Typography variant="body1"> Add to Watchlist </Typography>
+        <Stack marginBottom="3vw" spacing={10} flexWrap="wrap" direction="row">
           {productList.map((product_id, index) => (
-            <CryptoCard key={index} product_id={product_id} onClick={() => handleAddToWatchlist(product_id)} />
+            <CryptoCard
+              key={index}
+              product_id={product_id}
+              onClick={() => handleAddToWatchlist(product_id)}
+            />
           ))}
         </Stack>
       </Stack>

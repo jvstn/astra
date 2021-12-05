@@ -19,6 +19,7 @@ export default function CryptoCard({ product_id, onClick }: Props): ReactElement
           component="img"
           image={`https://cryptologos.cc/logos/thumbs/${name}.png?v=014`}
           alt={name}
+          sx={{ height: 70 }}
         />
         <CardContent>
           <Typography variant="body2">{product_id}</Typography>
