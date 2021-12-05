@@ -7,7 +7,8 @@ import Sidebar from "../components/Sidebar";
 import { SocketContext } from "../context/socket";
 import AssetData from "../features/AssetData/AssetData";
 import AssetSelector from "../features/AssetSelector/AssetSelector";
-import OrdersList from "../features/OrdersList/OrdersList";
+import Sidepanel from "../features/OrdersList/Sidepanel";
+import OrdersList from "../features/OrdersList/Sidepanel";
 import StrategySelector from "../features/StrategySelector/StrategySelector";
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -56,10 +57,7 @@ export default function Dashboard(): ReactElement {
               </Stack>
             </Grid>
             <Grid item md={3}>
-              <Stack>
-                <OrdersList orderType="fill" />
-                <OrdersList orderType="open" />
-              </Stack>
+              <Sidepanel />
             </Grid>
           </Grid>
         </Sidebar>
