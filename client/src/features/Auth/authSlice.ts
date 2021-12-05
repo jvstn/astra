@@ -6,12 +6,14 @@ interface AuthState extends AsyncInitialState {
   isAuthenticated: boolean;
   token: string;
   userId: string;
+  userExists: boolean;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
   token: "",
   userId: "",
+  userExists: true,
   loading: "idle",
   error: null,
 };
@@ -48,6 +50,18 @@ export const loginUser = createAsyncThunk<
   }
 });
 
+export const checkUserExists = createAsyncThunk(
+  "auth/checkUserExists",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("/user/check");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -76,20 +90,25 @@ const authSlice = createSlice({
     // login
     builder.addCase(loginUser.pending, (state, action) => {
       state.loading = "pending";
-    }
-    );
+    });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.isAuthenticated = true;
       state.token = action.payload.token;
       state.userId = action.payload.userId;
       state.loading = "succeeded";
-    }
-    );
+    });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = "failed";
       state.error = action.error.message as string;
-    }
-    );
+    });
+    // checkUserExists
+    builder.addCase(checkUserExists.fulfilled, (state, action) => {
+      state.userExists = action.payload;
+    });
+    builder.addCase(checkUserExists.rejected, (state, action) => {
+      state.loading = "failed";
+      state.error = action.error.message as string;
+    });
   },
 });
 

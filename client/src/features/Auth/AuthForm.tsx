@@ -7,23 +7,32 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import React, { ReactElement } from 'react';
-import { useAppDispatch } from '../../store/hooks';
-import { createUser, loginUser } from './authSlice';
+import React, { ReactElement, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { checkUserExists, createUser, loginUser } from "./authSlice";
 
-interface Props {
-  
-}
+interface Props {}
 
-export default function AuthForm({ }: Props): ReactElement {
-  const dispatch = useAppDispatch()
-
+export default function AuthForm({}: Props): ReactElement {
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
+  const userExists = useAppSelector((state) => state.user.userExists);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const userInfo = {username: data.get('username') as string, password: data.get('password') as string}
-    dispatch(loginUser(userInfo));
+    const userInfo = {
+      username: data.get("username") as string,
+      password: data.get("password") as string,
+    };
+    userExists ? dispatch(loginUser(userInfo)) : dispatch(createUser(userInfo));
   };
+
+  useEffect(() => {
+    dispatch(checkUserExists());
+    if (isAuthenticated) {
+      window.location.href = "/dashboard";
+    }
+  }, [dispatch, isAuthenticated]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -40,7 +49,7 @@ export default function AuthForm({ }: Props): ReactElement {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          {userExists ? "Login" : "Create Account"}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -73,7 +82,7 @@ export default function AuthForm({ }: Props): ReactElement {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Login
+            {userExists ? "Login" : "Create Account"}
           </Button>
         </Box>
       </Box>
