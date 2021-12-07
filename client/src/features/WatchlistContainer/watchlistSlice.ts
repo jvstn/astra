@@ -40,8 +40,8 @@ export const getProductList = createAsyncThunk(
 
 export const getWatchlist = createAsyncThunk(
   "watchlist/getWatchlist",
-  async (username: string) => {
-    const { data } = await axios.get(`user/watchlist/${username}`);
+  async () => {
+    const { data } = await axios.get(`user/watchlist`);
     let graphData: GraphData[] = [];
 
     for (let product_id of data) {
@@ -56,24 +56,15 @@ export const getWatchlist = createAsyncThunk(
   }
 );
 
-export const postWatchlistItem = createAsyncThunk<
-  any,
-  { product_id: string; username: string },
-  { state: RootState }
->("postWatchlistItem", async ({ product_id, username }) => {
-  const { data } = await axios.post("user/watchlist", { product_id, username });
+export const postWatchlistItem = createAsyncThunk("postWatchlistItem", async (product_id: string) => {
+  const { data } = await axios.post("user/watchlist", { product_id });
   return data;
 });
 
-export const deleteWatchlistItem = createAsyncThunk<
-  any,
-  { product_id: string; username: string },
-  { state: RootState }
->("deleteWatchlistItem", async ({ product_id, username }) => {
+export const deleteWatchlistItem = createAsyncThunk("deleteWatchlistItem", async (product_id: string) => {
   const { data } = await axios.delete(`user/watchlist`, {
     params: {
       product_id,
-      username,
     },
   });
   return data;

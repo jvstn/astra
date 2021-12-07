@@ -18,16 +18,16 @@ export default function WatchlistContainer(): ReactElement {
 
   useEffect(() => {
     dispatch(getProductList());
-    dispatch(getWatchlist("justinmc"));
+    dispatch(getWatchlist());
   }, [dispatch]);
 
   const handleAddToWatchlist = (product_id: string) => {
-    dispatch(postWatchlistItem({ product_id, username: "justinmc" }));
+    dispatch(postWatchlistItem(product_id));
     window.location.reload();
   };
 
   const handleDeleteWatchlistItem = (product_id: string) => {
-    dispatch(deleteWatchlistItem({ product_id, username: "justinmc" }));
+    dispatch(deleteWatchlistItem(product_id));
     window.location.reload();
   };
 
