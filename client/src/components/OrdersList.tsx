@@ -1,7 +1,7 @@
 import { List, ListItem, Stack, Theme, Typography } from '@mui/material';
 import { ClassNameMap, createStyles, makeStyles } from '@mui/styles';
 import React, { ReactElement } from 'react'
-import { Order, OrderType } from '../features/OrdersList/ordersSlice'
+import { Order, OrderType } from '../features/Sidepanel/ordersSlice'
 interface Props {
   orders: Order[];
   orderType: OrderType;

@@ -4,9 +4,8 @@ import CryptoCard from "../../components/CryptoCard";
 import { useAppDispatch } from "../../store/hooks";
 import { setSelectedAsset } from "./assetSelectorSlice";
 
-interface Props {}
 
-export default function AssetSelector({}: Props): ReactElement {
+export default function AssetSelector(): ReactElement {
   const dispatch = useAppDispatch();
 
   const assets = {

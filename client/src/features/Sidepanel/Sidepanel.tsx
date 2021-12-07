@@ -1,5 +1,4 @@
 import { Stack, Typography } from "@mui/material";
-import { ClassNameMap } from "@mui/styles";
 import React, { ReactElement, useEffect } from "react";
 import OrdersList from "../../components/OrdersList";
 import { socket } from "../../context/socket";
@@ -31,7 +30,7 @@ export default function Sidepanel(): ReactElement {
       socket.off("fill");
       socket.off("open");
     };
-  }, [socket, dispatch, selectedAsset]);
+  }, [socket, dispatch]);
 
   return (
     <>

@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AsyncInitialState } from "../../store/hooks";
-import { AppDispatch, RootState } from "../../store/store";
+import { RootState } from "../../store/store";
 import { getProductData } from "../../utils/assetUtils";
-import { fetchAssetData } from "../AssetData/assetDataSlice";
 export type AssetData = {
   dates: string[];
     prices: number[];
@@ -41,9 +40,8 @@ export const getProductList = createAsyncThunk(
 
 export const getWatchlist = createAsyncThunk(
   "watchlist/getWatchlist",
-  async (username: string, thunkAPI) => {
+  async (username: string) => {
     const { data } = await axios.get(`user/watchlist/${username}`);
-    const dispatch = thunkAPI.dispatch as AppDispatch;
     let graphData: GraphData[] = [];
 
     for (let product_id of data) {

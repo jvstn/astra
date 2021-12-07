@@ -10,9 +10,8 @@ import {
   getWatchlist,
   postWatchlistItem
 } from "./watchlistSlice";
-interface Props {}
 
-export default function WatchlistContainer({}: Props): ReactElement {
+export default function WatchlistContainer(): ReactElement {
   const dispatch = useAppDispatch();
   const productList = useAppSelector((state) => state.watchlist.products);
   const watchlist = useAppSelector((state) => state.watchlist.watchlist);
@@ -20,7 +19,7 @@ export default function WatchlistContainer({}: Props): ReactElement {
   useEffect(() => {
     dispatch(getProductList());
     dispatch(getWatchlist("justinmc"));
-  }, []);
+  }, [dispatch]);
 
   const handleAddToWatchlist = (product_id: string) => {
     dispatch(postWatchlistItem({ product_id, username: "justinmc" }));

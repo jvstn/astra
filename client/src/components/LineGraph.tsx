@@ -1,8 +1,6 @@
+import { ApexOptions } from "apexcharts";
 import React, { ReactElement } from "react";
 import Chart from "react-apexcharts";
-import { ApexOptions } from "apexcharts";
-import { createStyles, makeStyles } from "@mui/styles";
-import { Theme } from "@mui/material";
 interface Props {
   name: string;
   dates: string[];

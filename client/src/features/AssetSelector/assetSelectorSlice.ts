@@ -1,7 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 import { AsyncInitialState } from '../../store/hooks';
-import { RootState } from '../../store/store';
 
 
 interface InitialState extends AsyncInitialState {

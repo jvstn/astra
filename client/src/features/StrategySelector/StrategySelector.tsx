@@ -1,7 +1,7 @@
-import { Stack, Typography } from '@mui/material';
-import React, { ReactElement } from 'react'
-import StrategyCard from '../../components/StrategyCard'
-import { bollingerBandsContent, targetPriceContent, rsiContent, StrategyContent } from '../../utils/strategyContent'
+import { Stack } from '@mui/material';
+import React, { ReactElement } from 'react';
+import StrategyCard from '../../components/StrategyCard';
+import { bollingerBandsContent, rsiContent, StrategyContent, targetPriceContent } from '../../utils/strategyContent';
 
 const strategyContents: StrategyContent[] = [
   targetPriceContent,

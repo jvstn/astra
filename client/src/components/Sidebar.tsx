@@ -51,7 +51,7 @@ export default function Sidebar({ children }: Props) {
           >
             Astrabot
           </Typography>
-        <img src={logoPic} height={80} />
+        <img src={logoPic} alt="AstraBot" height={80} />
         </Stack>
       </Toolbar>
       <Divider />

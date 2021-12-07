@@ -11,9 +11,8 @@ import React, { ReactElement, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { checkUserExists, createUser, loginUser } from "./authSlice";
 
-interface Props {}
 
-export default function AuthForm({}: Props): ReactElement {
+export default function AuthForm(): ReactElement {
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   const userExists = useAppSelector((state) => state.user.userExists);
