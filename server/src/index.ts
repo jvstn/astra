@@ -31,21 +31,26 @@ mongoose.connect(mongoURI).then(() => {
   console.log('Error connecting to MongoDB:', err);
 });
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
+
+app.use('/api/user', profile);
+app.use('/api/orders', limitRoutes);
+app.use('/api/strategy', strategyRoutes);
+
+
+// Connect to client socket
+io.on("connection", (socket) => {
+  console.log("a user connected");
 });
 
+// Connect to coinbase socket
 coinbaseApi.ws.connect();
-
-app.use('/user', profile);
-app.use('/orders', limitRoutes);
-app.use('/strategy', strategyRoutes);
 
 coinbaseApi.ws.subscribe({
   name: WebSocketChannelName.USER,
   product_ids: ["BTC-USD"],
 });
 
+//Emit buy sell when orders are created
 coinbaseApi.ws.on(WebSocketEvent.ON_MESSAGE, (msg) => {
   if (msg.type === 'match') {
     io.emit('fill', msg);
