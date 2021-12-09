@@ -37,7 +37,7 @@ export const startBollBands = async (req: Request, res: Response) => {
 export const stopBollBands = async (req: Request, res: Response) => {
   try {
     const product_id: string = req.body.product_id;
-    BollingerBandsAnalyzer.stop(product_id);
+    BollingerBandsAnalyzer.stop(product_id, "BBANDS");
     res.status(200).send("Strategy stopped succsessfully");
   } catch (error) {
     console.log(error);
@@ -59,7 +59,7 @@ export const startRSI = async (req: Request, res: Response) => {
 export const stopRSI = async (req: Request, res: Response) => {
   try {
     const product_id: string = req.body.product_id;
-    RSIAnalyzer.stop(product_id);
+    RSIAnalyzer.stop(product_id, "RSI");
     res.status(200).send("Strategy stopped succsessfully");
   } catch (error) {
     console.log(error);

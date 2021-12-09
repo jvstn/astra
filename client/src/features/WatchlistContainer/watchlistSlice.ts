@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AsyncInitialState } from "../../store/hooks";
-import { RootState } from "../../store/store";
 import { getProductData } from "../../utils/assetUtils";
 export type AssetData = {
   dates: string[];
