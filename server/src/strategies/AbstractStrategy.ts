@@ -25,23 +25,21 @@ export abstract class AbstractStrategy {
   ) {
     try {
       const order = await coinbaseApi.rest.order.placeOrder({
-      product_id,
-      side: OrderSide[side],
-      type: OrderType.MARKET,
-      size,
+        product_id,
+        side: OrderSide[side],
+        type: OrderType.MARKET,
+        size,
       });
-    console.log(order);
+      console.log(order);
     } catch (error) {
       console.log(error);
     }
-    
   }
 
   static stop(product_id: string, strategy: string) {
     if (this.activeStrategies[product_id]) {
       this.removeActiveStrategy(product_id, strategy);
     }
-    console.log(this.getActiveStrategies());
     if (!this.activeStrategies[product_id]) {
       coinbaseApi.ws.unsubscribe({
         name: WebSocketChannelName.TICKER,
@@ -56,6 +54,7 @@ export abstract class AbstractStrategy {
     } else {
       this.activeStrategies[product_id] = new Set([strategy]);
     }
+    console.log(this.activeStrategies);
   }
 
   static removeActiveStrategy(product_id: string, strategy: string) {
@@ -65,10 +64,16 @@ export abstract class AbstractStrategy {
     if (this.activeStrategies[product_id].size === 0) {
       delete this.activeStrategies[product_id];
     }
+    console.log(this.activeStrategies);
   }
 
-  static getActiveStrategies(): ActiveStrategies {
-    return this.activeStrategies;
+  static getActiveStrategies(product_id: string): string[] {
+    console.log(this.activeStrategies);
+    if (this.activeStrategies[product_id]) {
+      return Array.from(this.activeStrategies[product_id]);
+    } else {
+      return [];
+    }
   }
 
   static isActiveStrategy(product_id: string, strategy: string) {

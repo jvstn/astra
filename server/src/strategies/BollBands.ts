@@ -11,7 +11,6 @@ export class BollingerBandsAnalyzer extends AbstractStrategy {
 
     this.addActiveStrategy(product_id, "BBANDS");
 
-    console.log(this.getActiveStrategies());
 
     coinbaseApi.ws.on(WebSocketEvent.ON_MESSAGE_TICKER, (ticker) => {
       if (ticker.product_id === product_id && this.isActiveStrategy(product_id, "BBANDS")) {

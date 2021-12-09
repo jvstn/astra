@@ -1,5 +1,6 @@
 import { LimitOrder, OrderSide, OrderType } from 'coinbase-pro-node';
 import { Request, Response } from 'express'
+import { AbstractStrategy } from '../strategies/AbstractStrategy';
 import { BollingerBandsAnalyzer } from '../strategies/BollBands'
 import { RSIAnalyzer } from '../strategies/RSIAnalyzer';
 import { coinbaseApi } from '../util/coinbaseUtils';
@@ -20,6 +21,13 @@ interface LimitRequestBody {
   size: string;
   product_id: string;
   side: "BUY" | "SELL";
+}
+
+export const getProductActiveStrategies = async (req: Request, res: Response) => {
+  const { product_id } = req.params;
+  console.log(product_id);
+  const strategies = AbstractStrategy.getActiveStrategies(product_id.toUpperCase());
+  res.json(strategies);
 }
 
 export const startBollBands = async (req: Request, res: Response) => {

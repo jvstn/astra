@@ -17,7 +17,6 @@ export class RSIAnalyzer extends AbstractStrategy {
     this.addActiveStrategy(product_id, "RSI");
 
 
-    console.log(this.getActiveStrategies());
     
       coinbaseApi.ws.on(WebSocketEvent.ON_MESSAGE_TICKER, (ticker: WebSocketTickerMessage) => {
       
