@@ -46,6 +46,7 @@ export abstract class AbstractStrategy {
         product_ids: [product_id],
       });
     }
+    console.log(this.activeStrategies);
   }
 
   static addActiveStrategy(product_id: string, strategy: string) {
