@@ -23,13 +23,18 @@ export abstract class AbstractStrategy {
     side: "BUY" | "SELL",
     size: string
   ) {
-    const order = await coinbaseApi.rest.order.placeOrder({
+    try {
+      const order = await coinbaseApi.rest.order.placeOrder({
       product_id,
       side: OrderSide[side],
       type: OrderType.MARKET,
       size,
-    });
+      });
     console.log(order);
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   static stop(product_id: string, strategy: string) {
