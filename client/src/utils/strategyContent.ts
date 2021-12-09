@@ -39,7 +39,7 @@ export const targetPriceContent = {
 };
 
 export const rsiContent = {
-  id: "rsi",
+  id: "RSI",
   name: "Relative Strength",
   description: "Buy the dip, sell the peak",
   explanation: "Relative Strength Index  (RSI) is a momentum indicator that measures the speed and change of price movements. It is considered overbought when above 70 and oversold when below 30. A majority of price changes stay within the 70-30 range, what is referred to as 'in the paint' by traders. RSI help identify when trends are likely to continue and when they are likely to reverse.",
@@ -47,7 +47,7 @@ export const rsiContent = {
 };
 
 export const bollingerBandsContent: StrategyContent = {
-  id: "boll-bands",
+  id: "BBANDS",
   name: "Bollinger Bands",
   explanation: "Bollinger bands are a volatility indicator that measures the distance between the price and the average price over a specified number of periods. The indicator is calculated by subtracting the average price from the price and then dividing the result by the standard deviation of the price over the specified number of periods.",
   description: "Buy with in range of moving average",

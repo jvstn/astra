@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import React, { ReactElement, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { StrategyContent } from "../../utils/strategyContent";
-import { OrderSide, setSelectedStrategy, startStrategy, StrategyRequestBody } from "./strategySlice";
+import { OrderSide, setSelectedStrategy, startStrategy, stopStrategy, StrategyRequestBody } from "./strategySlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -44,6 +44,9 @@ export default function StrategyModal({ content }: Props): ReactElement {
   const [size, setSize] = useState<Number>();
   const [price, setPrice] = useState<Number>();
   const [side, setSide] = useState<OrderSide>();
+  const activeStrategies = useAppSelector((state) => state.strategy.activeStrategies);
+  
+  const isActive = activeStrategies.includes(id);
   const handleOpen = () => {
     setOpen(true);
     dispatch(setSelectedStrategy(id));
@@ -53,7 +56,12 @@ export default function StrategyModal({ content }: Props): ReactElement {
   const handleSubmit = (body: StrategyRequestBody) => {
     console.log(body);
     dispatch(startStrategy(body));
-    handleClose();
+    window.location.reload();
+  };
+
+  const handleStop = () => {
+    dispatch(stopStrategy(id));
+    window.location.reload();
   };
 
   const handleIntervalChange = (value: string) => {
@@ -92,7 +100,13 @@ export default function StrategyModal({ content }: Props): ReactElement {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Start</Button>
+      {
+        isActive ? (
+          <Button onClick={handleStop}>Stop</Button>
+        ) : (
+          <Button onClick={handleOpen}>Start</Button>
+        )
+      }
       <Modal
         open={open}
         onClose={handleClose}
