@@ -1,11 +1,10 @@
-import { List, ListItem, Stack, Theme, Typography } from '@mui/material';
-import { ClassNameMap, createStyles, makeStyles } from '@mui/styles';
-import React, { ReactElement } from 'react'
-import { Order, OrderType } from '../features/Sidepanel/ordersSlice'
+import { List, ListItem, Stack, Theme, Typography } from "@mui/material";
+import { ClassNameMap, createStyles, makeStyles } from "@mui/styles";
+import React, { ReactElement } from "react";
+import { Order, OrderType } from "../features/Sidepanel/ordersSlice";
 interface Props {
   orders: Order[];
   orderType: OrderType;
-
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,13 +15,13 @@ const useStyles = makeStyles((theme: Theme) =>
       boxShadow: "0 -2px 10px rgba(0, 0, 0, 1)",
       marginTop: "1vw",
       borderRadius: "10px",
-      color: "oldlace",
+      backgroundColor: theme.palette.background.paper,
     },
     buySideItem: {
-      backgroundColor: theme.palette.success.light,
+      color: theme.palette.success.light,
     },
     sellSideItem: {
-      backgroundColor: theme.palette.error.main,
+      color: theme.palette.error.main,
     },
   })
 );
@@ -43,16 +42,19 @@ export default function OrdersList({ orders, orderType }: Props): ReactElement {
             role="listitem"
             aria-posinset={index + 1}
             aria-setsize={orders.length}
-            className={`
-              ${orderItem}
-              ${isBuySide(order) ? buySideItem : sellSideItem}`}
+            className={orderItem}
           >
             <Stack spacing={2} alignItems="center" direction="row">
-              <Typography variant="h5">{order.side.toUpperCase()}</Typography>
-              <Typography variant="body1">
+              <Typography
+                className={`${isBuySide(order) ? buySideItem : sellSideItem}`}
+                variant="h6"
+              >
+                {order.side.toUpperCase()}
+              </Typography>
+              <Typography variant="body1" fontSize={10}>
                 Price: {Number(order.price).toPrecision(5)}
                 <br />
-                Size: {Number(order.size).toPrecision(3)}
+                Size: {Number(order.size).toPrecision(5)}
               </Typography>
             </Stack>
           </ListItem>
