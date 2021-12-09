@@ -14,7 +14,7 @@ export default function AssetData(): ReactElement {
   const quoteCurrency = selectedAsset.split('-')[1];
   useEffect(() => {
     dispatch(fetchAssetData(selectedAsset));
-  }, [selectedAsset])
+  }, [selectedAsset, dispatch]);
   return (
     <>
       <Stack alignItems="center" direction="row" spacing={30}>

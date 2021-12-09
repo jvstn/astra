@@ -1,8 +1,8 @@
 import { Stack } from '@mui/material';
 import React, { ReactElement, useEffect } from 'react';
 import StrategyCard from '../../components/StrategyCard';
+import { useAppDispatch } from "../../store/hooks";
 import { bollingerBandsContent, rsiContent, StrategyContent, targetPriceContent } from '../../utils/strategyContent';
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getActiveStrategies } from './strategySlice';
 const strategyContents: StrategyContent[] = [
   targetPriceContent,

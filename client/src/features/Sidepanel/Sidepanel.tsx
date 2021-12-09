@@ -30,7 +30,7 @@ export default function Sidepanel(): ReactElement {
       socket.off("fill");
       socket.off("open");
     };
-  }, [socket, dispatch]);
+  }, [socket, dispatch, selectedAsset]);
 
   return (
     <>
