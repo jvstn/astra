@@ -56,7 +56,6 @@ coinbaseApi.ws.subscribe({
 
 //Emit buy sell when orders are created
 coinbaseApi.ws.on(WebSocketEvent.ON_MESSAGE, (msg) => {
-  console.log("msg", msg);
   if (msg.type === "match") {
     io.emit("fill", msg);
     console.log("Emiitted fill");

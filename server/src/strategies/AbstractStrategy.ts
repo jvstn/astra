@@ -46,7 +46,6 @@ export abstract class AbstractStrategy {
         product_ids: [product_id],
       });
     }
-    console.log(this.activeStrategies);
   }
 
   static addActiveStrategy(product_id: string, strategy: string) {
@@ -55,7 +54,6 @@ export abstract class AbstractStrategy {
     } else {
       this.activeStrategies[product_id] = new Set([strategy]);
     }
-    console.log(this.activeStrategies);
   }
 
   static removeActiveStrategy(product_id: string, strategy: string) {
@@ -65,11 +63,9 @@ export abstract class AbstractStrategy {
     if (this.activeStrategies[product_id].size === 0) {
       delete this.activeStrategies[product_id];
     }
-    console.log(this.activeStrategies);
   }
 
   static getActiveStrategies(product_id: string): string[] {
-    console.log(this.activeStrategies);
     if (this.activeStrategies[product_id]) {
       return Array.from(this.activeStrategies[product_id]);
     } else {

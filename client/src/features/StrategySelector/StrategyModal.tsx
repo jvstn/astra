@@ -54,7 +54,6 @@ export default function StrategyModal({ content }: Props): ReactElement {
   const handleClose = () => setOpen(false);
 
   const handleSubmit = (body: StrategyRequestBody) => {
-    console.log(body);
     dispatch(startStrategy(body));
     window.location.reload();
   };
