@@ -42,11 +42,11 @@ export class RSIAnalyzer extends AbstractStrategy {
   
 
   private static isOverbought(rsiValue: number) {
-    return rsiValue >= 70;
+    return rsiValue >= 57;
   }
 
   private static isOversold(rsiValue: number) {
-    return rsiValue <= 30;
+    return rsiValue <= 35;
   }
 
 

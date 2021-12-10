@@ -5,7 +5,7 @@ import { AbstractStrategy } from "./AbstractStrategy";
 
 export class BollingerBandsAnalyzer extends AbstractStrategy {
   static async start(product_id: string, interval: number) {
-    const bbands = new BollingerBands(interval);
+    const bbands = new BollingerBands(interval, 1);
 
     this.subscribeToTicker(product_id);
 
