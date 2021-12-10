@@ -10,7 +10,7 @@ interface Props {
 
 
 
-export default function LineGraph({ name, dates, values, height = 350 }: Props): ReactElement {
+export default function LineGraph({ name, dates, values, height = 300 }: Props): ReactElement {
   const series = [
     {
       name,
@@ -36,7 +36,6 @@ export default function LineGraph({ name, dates, values, height = 350 }: Props):
     },
     markers: {
       size: 0,
-      // colors: ["#ffffff"],
     },
     title: {
       text: "5hr Price Movements ",
