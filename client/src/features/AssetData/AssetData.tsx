@@ -4,11 +4,9 @@ import LineGraph from '../../components/LineGraph';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchAssetData } from './assetDataSlice';
 
-interface Props {
-  
-}
 
-export default function AssetData({ }: Props): ReactElement {
+
+export default function AssetData(): ReactElement {
   const dispatch = useAppDispatch();
   const selectedAsset = useAppSelector(state => state.asset.selectedAsset);
   const dates = useAppSelector(state => state.assetData.dates);
@@ -16,7 +14,7 @@ export default function AssetData({ }: Props): ReactElement {
   const quoteCurrency = selectedAsset.split('-')[1];
   useEffect(() => {
     dispatch(fetchAssetData(selectedAsset));
-  }, [selectedAsset])
+  }, [selectedAsset, dispatch]);
   return (
     <>
       <Stack alignItems="center" direction="row" spacing={30}>

@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import {createContext} from 'react'
 
 export const theme = createTheme({
   palette: {
@@ -16,7 +15,7 @@ export const theme = createTheme({
     },
     text: {
       primary: "#fff",
-      secondary: "#6E6F71",
+      secondary: "lightgrey",
     },
   },
   typography: {

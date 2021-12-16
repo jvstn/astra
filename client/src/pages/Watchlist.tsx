@@ -2,11 +2,9 @@ import React, { ReactElement } from 'react'
 import Sidebar from '../components/Sidebar'
 import WatchlistContainer from '../features/WatchlistContainer/WatchlistContainer'
 
-interface Props {
-  
-}
 
-export default function Watchlist({}: Props): ReactElement {
+
+export default function Watchlist(): ReactElement {
   return (
     <>
       <Sidebar>

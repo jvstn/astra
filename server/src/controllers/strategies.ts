@@ -1,5 +1,6 @@
 import { LimitOrder, OrderSide, OrderType } from 'coinbase-pro-node';
 import { Request, Response } from 'express'
+import { AbstractStrategy } from '../strategies/AbstractStrategy';
 import { BollingerBandsAnalyzer } from '../strategies/BollBands'
 import { RSIAnalyzer } from '../strategies/RSIAnalyzer';
 import { coinbaseApi } from '../util/coinbaseUtils';
@@ -22,9 +23,16 @@ interface LimitRequestBody {
   side: "BUY" | "SELL";
 }
 
+export const getProductActiveStrategies = async (req: Request, res: Response) => {
+  const { product_id } = req.params;
+  console.log(product_id);
+  const strategies = AbstractStrategy.getActiveStrategies(product_id.toUpperCase());
+  res.json(strategies);
+}
+
 export const startBollBands = async (req: Request, res: Response) => {
   try {
-    const { product_id, interval, standardDeviation }: BollBandsRequestBody =
+    const { product_id, interval }: BollBandsRequestBody =
       req.body;
     BollingerBandsAnalyzer.start(product_id, Number(interval));
     res.status(200).send("Strategy started succsessfully");
@@ -36,8 +44,8 @@ export const startBollBands = async (req: Request, res: Response) => {
 
 export const stopBollBands = async (req: Request, res: Response) => {
   try {
-    const product_id: string = req.body.product_id;
-    BollingerBandsAnalyzer.stop(product_id);
+    const product_id = req.query.product_id as string;
+    BollingerBandsAnalyzer.stop(product_id, "BBANDS");
     res.status(200).send("Strategy stopped succsessfully");
   } catch (error) {
     console.log(error);
@@ -58,8 +66,8 @@ export const startRSI = async (req: Request, res: Response) => {
 
 export const stopRSI = async (req: Request, res: Response) => {
   try {
-    const product_id: string = req.body.product_id;
-    RSIAnalyzer.stop(product_id);
+    const product_id = req.query.product_id as string;
+    RSIAnalyzer.stop(product_id, "RSI");
     res.status(200).send("Strategy stopped succsessfully");
   } catch (error) {
     console.log(error);

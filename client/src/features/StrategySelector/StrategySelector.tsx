@@ -1,8 +1,9 @@
-import { Stack, Typography } from '@mui/material';
-import React, { ReactElement } from 'react'
-import StrategyCard from '../../components/StrategyCard'
-import { bollingerBandsContent, targetPriceContent, rsiContent, StrategyContent } from '../../utils/strategyContent'
-
+import { Stack } from '@mui/material';
+import React, { ReactElement, useEffect } from 'react';
+import StrategyCard from '../../components/StrategyCard';
+import { useAppDispatch } from "../../store/hooks";
+import { bollingerBandsContent, rsiContent, StrategyContent, targetPriceContent } from '../../utils/strategyContent';
+import { getActiveStrategies } from './strategySlice';
 const strategyContents: StrategyContent[] = [
   targetPriceContent,
   bollingerBandsContent,
@@ -10,7 +11,10 @@ const strategyContents: StrategyContent[] = [
 ];
 
 export default function StrategySelector(): ReactElement {
-  
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getActiveStrategies())
+  }, [dispatch]);
   
   return (
     <>

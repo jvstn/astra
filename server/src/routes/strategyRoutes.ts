@@ -1,14 +1,16 @@
 import { Router } from "express";
-import { createLimitOrder, startBollBands, startRSI, stopBollBands, stopRSI } from "../controllers/strategies";
+import { createLimitOrder, getProductActiveStrategies, startBollBands, startRSI, stopBollBands, stopRSI } from "../controllers/strategies";
 import { checkAuth } from "../middleware/checkAuth";
 
 const router = Router();
 
-router.post("/boll-bands", checkAuth, startBollBands);
-router.get("/boll-bands", checkAuth, stopBollBands);
+router.get('/active/:product_id', checkAuth, getProductActiveStrategies)
+
+router.post("/bbands", checkAuth, startBollBands);
+router.delete("/bbands", checkAuth, stopBollBands);
 
 router.post("/rsi", checkAuth, startRSI);
-router.get("/rsi", checkAuth, stopRSI);
+router.delete("/rsi", checkAuth, stopRSI);
 
 router.post("/target-price", checkAuth, createLimitOrder);
 

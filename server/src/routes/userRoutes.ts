@@ -20,7 +20,7 @@ router.get("/check", checkUser);
 
 router.get("/account", checkAuth, getAccount);
 
-router.get("/watchlist/:username", checkAuth, getWatchList);
+router.get("/watchlist/", checkAuth, getWatchList);
 router.post("/watchlist", checkAuth, addToWatchlist);
 router.delete("/watchlist", checkAuth, removeFromWatchlist);
 

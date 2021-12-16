@@ -95,7 +95,6 @@ const ordersSlice = createSlice({
       } else {
         state.fill = payload.res.data;
       }
-      console.log(payload);
     });
     builder.addCase(fetchOrders.rejected, (state, action) => {
       state.loading = "failed";

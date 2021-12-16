@@ -1,14 +1,12 @@
 import { ClassNameMap, Grid, Stack, Theme } from "@mui/material";
-import { makeStyles, createStyles } from "@mui/styles";
+import { createStyles, makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { ReactElement, useContext, useEffect } from "react";
-import LineGraph from "../components/LineGraph";
 import Sidebar from "../components/Sidebar";
 import { SocketContext } from "../context/socket";
 import AssetData from "../features/AssetData/AssetData";
 import AssetSelector from "../features/AssetSelector/AssetSelector";
-import Sidepanel from "../features/OrdersList/Sidepanel";
-import OrdersList from "../features/OrdersList/Sidepanel";
+import Sidepanel from "../features/Sidepanel/Sidepanel";
 import StrategySelector from "../features/StrategySelector/StrategySelector";
 
 const useStyles = makeStyles((theme: Theme) => {

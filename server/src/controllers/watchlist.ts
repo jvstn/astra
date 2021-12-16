@@ -52,7 +52,6 @@ export const removeFromWatchlist = async (req: Request, res: Response) => {
         (item) => item.product_id !== product_id
       );
       await user.save();
-      console.log(user.watchlist);
       res.send(user.watchlist);
     }
   } catch (error) {
