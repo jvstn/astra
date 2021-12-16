@@ -7,9 +7,9 @@ Create a crpyto trading bot that executes trades at a desired price.
 Add additional strategies continuous strategies that can trade crypto based on technical analysis
 
 ## Hosted Application
-[View Demo](http://astrabot.us)
- Username: demotest
- Password: 123456
+[View Demo](http://astrabot.us) <br />
+ Username: demotest <br />
+ Password: 123456 <br />
 
 # Project Architecture
 
