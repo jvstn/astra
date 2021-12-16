@@ -1,4 +1,4 @@
-# SkyRo Crypto Bot
+# Crypto Trading Bot
 
 # Objective
 
@@ -6,11 +6,14 @@ Create a crpyto trading bot that executes trades at a desired price.
 
 Add additional strategies continuous strategies that can trade crypto based on technical analysis
 
-[Hosted application](137.184.56.247)
+## Hosted Application
+[View Demo](http://astrabot.us)
+ Username: demotest
+ Password: 123456
 
 # Project Architecture
 
-The project uses Model View Presenter (MVP) as an architecture. Model View Presenter is characterized by the UI elements creating events, the presenter handling those events, and manipulating the model. The controllers on the backend handle most communication with the model and are responsible for relaying updates to the view
+The project uses Model View Presenter (MVP) as an architecture. Model View Presenter is characterized by the UI elements creating events, the presenter handling those events, and manipulating the model. The controllers on the backend handle communication with the model and are responsible for relaying updates to the view
 
 # API Documentation
 
